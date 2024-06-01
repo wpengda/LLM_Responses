@@ -1,0 +1,16 @@
+﻿Item content,normal_human.mean,old_people.mean,persona_GPT3.5.mean,shape_GPT3.5.mean,persona_GPT4.mean,shape_GPT4.mean
+Sociability,2.63,3.07,2.91,2.84,3.04,2.93
+Assertiveness,2.92,3.27,3.15,3,3.05,2.99
+Energy Level,3.3,3.73,3.39,2.93,3.29,3.09
+Compassion,3.96,4.24,3.69,3.61,3.43,3.39
+Respectfulness,4.19,4.46,4.29,3.99,3.23,3.48
+Trust,3.29,3.82,3.33,3.45,3.02,3.17
+Organization,3.78,4.19,3.66,3.36,3.17,3.33
+Productiveness,3.71,4.25,3.81,3.43,3.28,3.29
+Responsibility,3.93,4.31,3.67,3.49,3.13,3.23
+Anxiety,3.07,2.43,2.81,2.8,3.04,2.99
+Depression,2.54,1.9,2.58,2.71,2.93,2.78
+Emotional Volatility,2.41,1.91,2.75,2.62,2.98,2.65
+Intellectual Curiosity,4.1,4.25,3.52,3.11,3.2,3.26
+Aesthetic Sensitivity,3.86,4.04,3.45,3.24,3.29,3.2
+Creative Imagination,3.91,4.21,3.32,3.22,3.46,3.33
