@@ -1,6 +1,6 @@
-﻿Item content,normal_human.mean,old_people.mean,persona_GPT3.5.mean,shape_GPT3.5.mean,persona_GPT4.mean,shape_GPT4.mean
-Extraversion,2.95,3.36,3.15,2.92,3.13,3
-Agreeableness,3.82,4.17,3.77,3.68,3.23,3.35
-Conscientiousness,3.81,4.25,3.71,3.43,3.19,3.28
-Neuroticism,2.67,2.08,2.71,2.71,2.98,2.81
-Openness,3.96,4.17,3.43,3.19,3.32,3.26
+﻿Item content,normal_human.mean,old_people.mean,persona_GPT3.5.mean,shape_GPT3.5.mean,persona_GPT4.mean,shape_GPT4.mean,persona_LLaMA3.mean,shape_LLaMA3.mean
+Extraversion,2.99,3.35,3.15,2.92,3.13,3,3.42,2.9
+Agreeableness,3.87,4.15,3.77,3.68,3.23,3.35,4.11,3.43
+Conscientiousness,3.89,4.22,3.71,3.43,3.19,3.28,3.54,3.1
+Neuroticism,2.7,2.11,2.71,2.71,2.98,2.81,2.59,2.75
+Openness,3.97,4.18,3.43,3.19,3.32,3.26,3.57,3.09

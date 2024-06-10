@@ -4,14 +4,19 @@ library(psych)
 library(lavaan)
 library(Metrics)
 
-data_normal_human <- read.table("Data/human_normal.csv",sep = ",",header = T) # do not need to reverse code
+data_normal_human <- read.table("Data/human_normal.csv",sep = ",",header = T)
+data_normal_human <- na.omit(data_normal_human)
 data_old_people <- read.table("Data/old_people.csv",sep = ",",header = T)
+data_old_people <- na.omit(data_old_people)
 
 data_persona_GPT3.5 <- read.table("Data/GPT_3.5/persona_bfi60_3.5.csv",sep = ",",header = T)
 data_shape_GPT3.5 <- read.table("Data/GPT_3.5/shape_bfi60_300_3.5.csv",sep = ",",header = T)
 
 data_persona_GPT4 <- read.table("Data/GPT_4/persona_bfi60_4.csv",sep = ",",header = T)
 data_shape_GPT4 <- read.table("Data/GPT_4/shape_bfi60_300_4.csv",sep = ",",header = T)
+
+data_persona_LLaMA3 <- read.table("Data/LLaMA3/persona_bfi60_instruction.csv",sep = ",",header = T)
+data_shape_LLaMA3 <- read.table("Data/LLaMA3/shape_bfi60_instruction_300.csv",sep = ",",header = T)
 
 data_normal_human <- data_normal_human[2: 61]
 data_old_people <- data_old_people[21: 80]
@@ -22,17 +27,34 @@ data_shape_GPT3.5 <- data_shape_GPT3.5[2: 61]
 data_persona_GPT4 <- data_persona_GPT4[2: 61]
 data_shape_GPT4 <- data_shape_GPT4[2: 61]
 
+data_persona_LLaMA3 <- data_persona_LLaMA3[2: 61]
+data_shape_LLaMA3 <- data_shape_LLaMA3[2: 61]
+
 reverse_code_columns <- c(11, 16, 26, 31, 36, 51, 12, 17, 22, 37, 42, 47, 3, 8, 23, 28, 48, 58, 4, 9, 
                           24, 29, 44, 49, 5, 25, 30, 45, 50, 55)
 
 for (col in reverse_code_columns) {
+  data_normal_human[, col] <- 6 - data_normal_human[, col]
   data_old_people[, col] <- 6 - data_old_people[, col]
   data_persona_GPT3.5[, col] <- 6 - data_persona_GPT3.5[, col]
   data_shape_GPT3.5[, col] <- 6 - data_shape_GPT3.5[, col]
   data_persona_GPT4[, col] <- 6 - data_persona_GPT4[, col]
   data_shape_GPT4[, col] <- 6 - data_shape_GPT4[, col]
+  data_persona_LLaMA3[, col] <- 6 - data_persona_LLaMA3[, col]
+  data_shape_LLaMA3[, col] <- 6 - data_shape_LLaMA3[, col]
 }
 
+filter_data <- function(df) {
+  df[apply(df, 1, function(row) all(row >= 1 & row <= 5)), ]
+}
+data_normal_human <- filter_data(data_normal_human)
+data_old_people <- filter_data(data_old_people)
+data_persona_GPT3.5 <- filter_data(data_persona_GPT3.5)
+data_shape_GPT3.5 <- filter_data(data_shape_GPT3.5)
+data_persona_GPT4 <- filter_data(data_persona_GPT4)
+data_shape_GPT4 <- filter_data(data_shape_GPT4)
+data_persona_LLaMA3 <- filter_data(data_persona_LLaMA3)
+data_shape_LLaMA3 <- filter_data(data_shape_LLaMA3)
 
 # Facet
 Sociability <- c(1, 16, 31, 46)
@@ -72,6 +94,9 @@ item.results.shape_GPT3.5 <- describeBy(data_shape_GPT3.5)
 item.results.persona_GPT4 <- describeBy(data_persona_GPT4)
 item.results.shape_GPT4 <- describeBy(data_shape_GPT4)
 
+item.results.persona_LLaMA3 <- describeBy(data_persona_LLaMA3)
+item.results.shape_LLaMA3 <- describeBy(data_shape_LLaMA3)
+
 table.item <- data.frame(normal_human.mean = item.results.normal_human[,c("mean")],
                          old_people.mean = item.results.old_people[,c("mean")],
                          
@@ -81,6 +106,9 @@ table.item <- data.frame(normal_human.mean = item.results.normal_human[,c("mean"
                          persona_GPT4.mean = item.results.persona_GPT4[,c("mean")],
                          shape_GPT4.mean = item.results.shape_GPT4[,c("mean")],
                          
+                         persona_LLaMA3.mean = item.results.persona_LLaMA3[,c("mean")],
+                         shape_LLaMA3.mean = item.results.shape_LLaMA3[,c("mean")],
+                         
                          normal_human.sd = item.results.normal_human[,c("sd")],
                          old_people.sd = item.results.old_people[,c("sd")],
                          
@@ -88,7 +116,9 @@ table.item <- data.frame(normal_human.mean = item.results.normal_human[,c("mean"
                          shape_GPT3.5.sd = item.results.shape_GPT3.5[,c("sd")],
                          
                          persona_GPT4.sd = item.results.persona_GPT4[,c("sd")],
-                         shape_GPT4.sd = item.results.shape_GPT4[,c("sd")]
+                         shape_GPT4.sd = item.results.shape_GPT4[,c("sd")],
+                         persona_LLaMA3.sd = item.results.persona_LLaMA3[,c("sd")],
+                         shape_LLaMA3.sd = item.results.shape_LLaMA3[,c("sd")]
 )
 
 # write in csv file
@@ -152,6 +182,18 @@ alpha_agreeableness_shape_GPT4 <- calculate_alpha(data_shape_GPT4[, Agreeablenes
 alpha_conscientiousness_shape_GPT4 <- calculate_alpha(data_shape_GPT4[, Conscientiousness])
 alpha_neuroticism_shape_GPT4 <- calculate_alpha(data_shape_GPT4[, Neuroticism])
 alpha_openness_shape_GPT4 <- calculate_alpha(data_shape_GPT4[, Openness])
+
+alpha_extraversion_persona_LLaMA3 <- calculate_alpha(data_persona_LLaMA3[, Extraversion])
+alpha_agreeableness_persona_LLaMA3 <- calculate_alpha(data_persona_LLaMA3[, Agreeableness])
+alpha_conscientiousness_persona_LLaMA3 <- calculate_alpha(data_persona_LLaMA3[, Conscientiousness])
+alpha_neuroticism_persona_LLaMA3 <- calculate_alpha(data_persona_LLaMA3[, Neuroticism])
+alpha_openness_persona_LLaMA3 <- calculate_alpha(data_persona_LLaMA3[, Openness])
+
+alpha_extraversion_shape_LLaMA3 <- calculate_alpha(data_shape_LLaMA3[, Extraversion])
+alpha_agreeableness_shape_LLaMA3 <- calculate_alpha(data_shape_LLaMA3[, Agreeableness])
+alpha_conscientiousness_shape_LLaMA3 <- calculate_alpha(data_shape_LLaMA3[, Conscientiousness])
+alpha_neuroticism_shape_LLaMA3 <- calculate_alpha(data_shape_LLaMA3[, Neuroticism])
+alpha_openness_shape_LLaMA3 <- calculate_alpha(data_shape_LLaMA3[, Openness])
 
 
 # facet
@@ -251,6 +293,38 @@ alpha_intellectual_curiosity_shape_GPT4 <- calculate_alpha(data_shape_GPT4[, Int
 alpha_aesthetic_sensitivity_shape_GPT4 <- calculate_alpha(data_shape_GPT4[, Aesthetic_Sensitivity])
 alpha_creative_imagination_shape_GPT4 <- calculate_alpha(data_shape_GPT4[, Creative_Imagination])
 
+alpha_sociability_persona_LLaMA3 <- calculate_alpha(data_persona_LLaMA3[, Sociability])
+alpha_assertiveness_persona_LLaMA3 <- calculate_alpha(data_persona_LLaMA3[, Assertiveness])
+alpha_energy_level_persona_LLaMA3 <- calculate_alpha(data_persona_LLaMA3[, Energy_Level])
+alpha_compassion_persona_LLaMA3 <- calculate_alpha(data_persona_LLaMA3[, Compassion])
+alpha_respectfulness_persona_LLaMA3 <- calculate_alpha(data_persona_LLaMA3[, Respectfulness])
+alpha_trust_persona_LLaMA3 <- calculate_alpha(data_persona_LLaMA3[, Trust])
+alpha_organization_persona_LLaMA3 <- calculate_alpha(data_persona_LLaMA3[, Organization])
+alpha_productiveness_persona_LLaMA3 <- calculate_alpha(data_persona_LLaMA3[, Productiveness])
+alpha_responsibility_persona_LLaMA3 <- calculate_alpha(data_persona_LLaMA3[, Responsibility])
+alpha_anxiety_persona_LLaMA3 <- calculate_alpha(data_persona_LLaMA3[, Anxiety])
+alpha_depression_persona_LLaMA3 <- calculate_alpha(data_persona_LLaMA3[, Depression])
+alpha_emotional_volatility_persona_LLaMA3<- calculate_alpha(data_persona_LLaMA3[, Emotional_Volatility])
+alpha_intellectual_curiosity_persona_LLaMA3 <- calculate_alpha(data_persona_LLaMA3[, Intellectual_Curiosity])
+alpha_aesthetic_sensitivity_persona_LLaMA3 <- calculate_alpha(data_persona_LLaMA3[, Aesthetic_Sensitivity])
+alpha_creative_imagination_persona_LLaMA3 <- calculate_alpha(data_persona_LLaMA3[, Creative_Imagination])
+
+alpha_sociability_shape_LLaMA3 <- calculate_alpha(data_shape_LLaMA3[, Sociability])
+alpha_assertiveness_shape_LLaMA3 <- calculate_alpha(data_shape_LLaMA3[, Assertiveness])
+alpha_energy_level_shape_LLaMA3 <- calculate_alpha(data_shape_LLaMA3[, Energy_Level])
+alpha_compassion_shape_LLaMA3 <- calculate_alpha(data_shape_LLaMA3[, Compassion])
+alpha_respectfulness_shape_LLaMA3 <- calculate_alpha(data_shape_LLaMA3[, Respectfulness])
+alpha_trust_shape_LLaMA3 <- calculate_alpha(data_shape_LLaMA3[, Trust])
+alpha_organization_shape_LLaMA3 <- calculate_alpha(data_shape_LLaMA3[, Organization])
+alpha_productiveness_shape_LLaMA3 <- calculate_alpha(data_shape_LLaMA3[, Productiveness])
+alpha_responsibility_shape_LLaMA3 <- calculate_alpha(data_shape_LLaMA3[, Responsibility])
+alpha_anxiety_shape_LLaMA3 <- calculate_alpha(data_shape_LLaMA3[, Anxiety])
+alpha_depression_shape_LLaMA3 <- calculate_alpha(data_shape_LLaMA3[, Depression])
+alpha_emotional_volatility_shape_LLaMA3<- calculate_alpha(data_shape_LLaMA3[, Emotional_Volatility])
+alpha_intellectual_curiosity_shape_LLaMA3 <- calculate_alpha(data_shape_LLaMA3[, Intellectual_Curiosity])
+alpha_aesthetic_sensitivity_shape_LLaMA3 <- calculate_alpha(data_shape_LLaMA3[, Aesthetic_Sensitivity])
+alpha_creative_imagination_shape_LLaMA3 <- calculate_alpha(data_shape_LLaMA3[, Creative_Imagination])
+
 result_df <- data.frame(
   Trait = c("Sociability", "Assertiveness", "Energy Level", "Compassion", "Respectfulness",
             "Trust", "Organization", "Productiveness", "Responsibility", "Anxiety",
@@ -291,7 +365,19 @@ result_df <- data.frame(
                    alpha_organization_shape_GPT4, alpha_productiveness_shape_GPT4, alpha_responsibility_shape_GPT4,
                    alpha_anxiety_shape_GPT4, alpha_depression_shape_GPT4, alpha_emotional_volatility_shape_GPT4,
                    alpha_intellectual_curiosity_shape_GPT4, alpha_aesthetic_sensitivity_shape_GPT4,
-                   alpha_creative_imagination_shape_GPT4)
+                   alpha_creative_imagination_shape_GPT4),
+  persona_LLaMA3 = c(alpha_sociability_persona_LLaMA3, alpha_assertiveness_persona_LLaMA3, alpha_energy_level_persona_LLaMA3,
+                   alpha_compassion_persona_LLaMA3, alpha_respectfulness_persona_LLaMA3, alpha_trust_persona_LLaMA3,
+                   alpha_organization_persona_LLaMA3, alpha_productiveness_persona_LLaMA3, alpha_responsibility_persona_LLaMA3,
+                   alpha_anxiety_persona_LLaMA3, alpha_depression_persona_LLaMA3, alpha_emotional_volatility_persona_LLaMA3,
+                   alpha_intellectual_curiosity_persona_LLaMA3, alpha_aesthetic_sensitivity_persona_LLaMA3,
+                   alpha_creative_imagination_persona_LLaMA3),
+  shape_LLaMA3 = c(alpha_sociability_shape_LLaMA3, alpha_assertiveness_shape_LLaMA3, alpha_energy_level_shape_LLaMA3,
+                 alpha_compassion_shape_LLaMA3, alpha_respectfulness_shape_LLaMA3, alpha_trust_shape_LLaMA3,
+                 alpha_organization_shape_LLaMA3, alpha_productiveness_shape_LLaMA3, alpha_responsibility_shape_LLaMA3,
+                 alpha_anxiety_shape_LLaMA3, alpha_depression_shape_LLaMA3, alpha_emotional_volatility_shape_LLaMA3,
+                 alpha_intellectual_curiosity_shape_LLaMA3, alpha_aesthetic_sensitivity_shape_LLaMA3,
+                 alpha_creative_imagination_shape_LLaMA3)
   
 )
 
@@ -573,6 +659,96 @@ shape_GPT4_facet_results <- data.frame(
 write.table(shape_GPT4_facet_results,"shape_GPT4_facet_results.csv",sep = ",")
 
 
+# persona_LLaMA3
+persona_LLaMA3_facet_results <- data.frame(
+  Trait = c("Sociability", "Assertiveness", "Energy Level", "Compassion", "Respectfulness", "Trust",
+            "Organization", "Productiveness", "Responsibility", "Anxiety", "Depression", "Emotional Volatility",
+            "Intellectual Curiosity", "Aesthetic Sensitivity", "Creative Imagination"),
+  Mean = c(
+    mean(rowMeans(data_persona_LLaMA3[, Sociability], na.rm = TRUE)),
+    mean(rowMeans(data_persona_LLaMA3[, Assertiveness], na.rm = TRUE)),
+    mean(rowMeans(data_persona_LLaMA3[, Energy_Level], na.rm = TRUE)),
+    mean(rowMeans(data_persona_LLaMA3[, Compassion], na.rm = TRUE)),
+    mean(rowMeans(data_persona_LLaMA3[, Respectfulness], na.rm = TRUE)),
+    mean(rowMeans(data_persona_LLaMA3[, Trust], na.rm = TRUE)),
+    mean(rowMeans(data_persona_LLaMA3[, Organization], na.rm = TRUE)),
+    mean(rowMeans(data_persona_LLaMA3[, Productiveness], na.rm = TRUE)),
+    mean(rowMeans(data_persona_LLaMA3[, Responsibility], na.rm = TRUE)),
+    mean(rowMeans(data_persona_LLaMA3[, Anxiety], na.rm = TRUE)),
+    mean(rowMeans(data_persona_LLaMA3[, Depression], na.rm = TRUE)),
+    mean(rowMeans(data_persona_LLaMA3[, Emotional_Volatility], na.rm = TRUE)),
+    mean(rowMeans(data_persona_LLaMA3[, Intellectual_Curiosity], na.rm = TRUE)),
+    mean(rowMeans(data_persona_LLaMA3[, Aesthetic_Sensitivity], na.rm = TRUE)),
+    mean(rowMeans(data_persona_LLaMA3[, Creative_Imagination], na.rm = TRUE))
+  ),
+  SD = c(
+    sd(rowMeans(data_persona_LLaMA3[, Sociability], na.rm = TRUE)),
+    sd(rowMeans(data_persona_LLaMA3[, Assertiveness], na.rm = TRUE)),
+    sd(rowMeans(data_persona_LLaMA3[, Energy_Level], na.rm = TRUE)),
+    sd(rowMeans(data_persona_LLaMA3[, Compassion], na.rm = TRUE)),
+    sd(rowMeans(data_persona_LLaMA3[, Respectfulness], na.rm = TRUE)),
+    sd(rowMeans(data_persona_LLaMA3[, Trust], na.rm = TRUE)),
+    sd(rowMeans(data_persona_LLaMA3[, Organization], na.rm = TRUE)),
+    sd(rowMeans(data_persona_LLaMA3[, Productiveness], na.rm = TRUE)),
+    sd(rowMeans(data_persona_LLaMA3[, Responsibility], na.rm = TRUE)),
+    sd(rowMeans(data_persona_LLaMA3[, Anxiety], na.rm = TRUE)),
+    sd(rowMeans(data_persona_LLaMA3[, Depression], na.rm = TRUE)),
+    sd(rowMeans(data_persona_LLaMA3[, Emotional_Volatility], na.rm = TRUE)),
+    sd(rowMeans(data_persona_LLaMA3[, Intellectual_Curiosity], na.rm = TRUE)),
+    sd(rowMeans(data_persona_LLaMA3[, Aesthetic_Sensitivity], na.rm = TRUE)),
+    sd(rowMeans(data_persona_LLaMA3[, Creative_Imagination], na.rm = TRUE))
+  )
+)
+
+# write in csv file
+write.table(persona_LLaMA3_facet_results,"persona_LLaMA3_facet_results.csv",sep = ",")
+
+
+# shape_LLaMA3
+shape_LLaMA3_facet_results <- data.frame(
+  Trait = c("Sociability", "Assertiveness", "Energy Level", "Compassion", "Respectfulness", "Trust",
+            "Organization", "Productiveness", "Responsibility", "Anxiety", "Depression", "Emotional Volatility",
+            "Intellectual Curiosity", "Aesthetic Sensitivity", "Creative Imagination"),
+  Mean = c(
+    mean(rowMeans(data_shape_LLaMA3[, Sociability], na.rm = TRUE)),
+    mean(rowMeans(data_shape_LLaMA3[, Assertiveness], na.rm = TRUE)),
+    mean(rowMeans(data_shape_LLaMA3[, Energy_Level], na.rm = TRUE)),
+    mean(rowMeans(data_shape_LLaMA3[, Compassion], na.rm = TRUE)),
+    mean(rowMeans(data_shape_LLaMA3[, Respectfulness], na.rm = TRUE)),
+    mean(rowMeans(data_shape_LLaMA3[, Trust], na.rm = TRUE)),
+    mean(rowMeans(data_shape_LLaMA3[, Organization], na.rm = TRUE)),
+    mean(rowMeans(data_shape_LLaMA3[, Productiveness], na.rm = TRUE)),
+    mean(rowMeans(data_shape_LLaMA3[, Responsibility], na.rm = TRUE)),
+    mean(rowMeans(data_shape_LLaMA3[, Anxiety], na.rm = TRUE)),
+    mean(rowMeans(data_shape_LLaMA3[, Depression], na.rm = TRUE)),
+    mean(rowMeans(data_shape_LLaMA3[, Emotional_Volatility], na.rm = TRUE)),
+    mean(rowMeans(data_shape_LLaMA3[, Intellectual_Curiosity], na.rm = TRUE)),
+    mean(rowMeans(data_shape_LLaMA3[, Aesthetic_Sensitivity], na.rm = TRUE)),
+    mean(rowMeans(data_shape_LLaMA3[, Creative_Imagination], na.rm = TRUE))
+  ),
+  SD = c(
+    sd(rowMeans(data_shape_LLaMA3[, Sociability], na.rm = TRUE)),
+    sd(rowMeans(data_shape_LLaMA3[, Assertiveness], na.rm = TRUE)),
+    sd(rowMeans(data_shape_LLaMA3[, Energy_Level], na.rm = TRUE)),
+    sd(rowMeans(data_shape_LLaMA3[, Compassion], na.rm = TRUE)),
+    sd(rowMeans(data_shape_LLaMA3[, Respectfulness], na.rm = TRUE)),
+    sd(rowMeans(data_shape_LLaMA3[, Trust], na.rm = TRUE)),
+    sd(rowMeans(data_shape_LLaMA3[, Organization], na.rm = TRUE)),
+    sd(rowMeans(data_shape_LLaMA3[, Productiveness], na.rm = TRUE)),
+    sd(rowMeans(data_shape_LLaMA3[, Responsibility], na.rm = TRUE)),
+    sd(rowMeans(data_shape_LLaMA3[, Anxiety], na.rm = TRUE)),
+    sd(rowMeans(data_shape_LLaMA3[, Depression], na.rm = TRUE)),
+    sd(rowMeans(data_shape_LLaMA3[, Emotional_Volatility], na.rm = TRUE)),
+    sd(rowMeans(data_shape_LLaMA3[, Intellectual_Curiosity], na.rm = TRUE)),
+    sd(rowMeans(data_shape_LLaMA3[, Aesthetic_Sensitivity], na.rm = TRUE)),
+    sd(rowMeans(data_shape_LLaMA3[, Creative_Imagination], na.rm = TRUE))
+  )
+)
+
+# write in csv file
+write.table(shape_LLaMA3_facet_results,"shape_LLaMA3_facet_results.csv",sep = ",")
+
+
 
 
 
@@ -715,6 +891,53 @@ write.table(shape_GPT4_scale_results,"shape_GPT4_scale_results.csv",sep = ",")
 
 
 
+# persona_LLaMA3
+persona_LLaMA3_scale_results <- data.frame(
+  Trait = c("Extraversion", "Agreeableness", "Conscientiousness", "Neuroticism", "Openness"),
+  Mean = c(
+    mean(rowMeans(data_persona_LLaMA3[, Extraversion], na.rm = TRUE)),
+    mean(rowMeans(data_persona_LLaMA3[, Agreeableness], na.rm = TRUE)),
+    mean(rowMeans(data_persona_LLaMA3[, Conscientiousness], na.rm = TRUE)),
+    mean(rowMeans(data_persona_LLaMA3[, Neuroticism], na.rm = TRUE)),
+    mean(rowMeans(data_persona_LLaMA3[, Openness], na.rm = TRUE))
+  ),
+  SD = c(
+    sd(rowMeans(data_persona_LLaMA3[, Extraversion], na.rm = TRUE)),
+    sd(rowMeans(data_persona_LLaMA3[, Agreeableness], na.rm = TRUE)),
+    sd(rowMeans(data_persona_LLaMA3[, Conscientiousness], na.rm = TRUE)),
+    sd(rowMeans(data_persona_LLaMA3[, Neuroticism], na.rm = TRUE)),
+    sd(rowMeans(data_persona_LLaMA3[, Openness], na.rm = TRUE))
+  )
+)
+
+# write in csv file
+write.table(persona_LLaMA3_scale_results,"persona_LLaMA3_scale_results.csv",sep = ",")
+
+# shape_LLaMA3
+shape_LLaMA3_scale_results <- data.frame(
+  Trait = c("Extraversion", "Agreeableness", "Conscientiousness", "Neuroticism", "Openness"),
+  Mean = c(
+    mean(rowMeans(data_shape_LLaMA3[, Extraversion], na.rm = TRUE)),
+    mean(rowMeans(data_shape_LLaMA3[, Agreeableness], na.rm = TRUE)),
+    mean(rowMeans(data_shape_LLaMA3[, Conscientiousness], na.rm = TRUE)),
+    mean(rowMeans(data_shape_LLaMA3[, Neuroticism], na.rm = TRUE)),
+    mean(rowMeans(data_shape_LLaMA3[, Openness], na.rm = TRUE))
+  ),
+  SD = c(
+    sd(rowMeans(data_shape_LLaMA3[, Extraversion], na.rm = TRUE)),
+    sd(rowMeans(data_shape_LLaMA3[, Agreeableness], na.rm = TRUE)),
+    sd(rowMeans(data_shape_LLaMA3[, Conscientiousness], na.rm = TRUE)),
+    sd(rowMeans(data_shape_LLaMA3[, Neuroticism], na.rm = TRUE)),
+    sd(rowMeans(data_shape_LLaMA3[, Openness], na.rm = TRUE))
+  )
+)
+
+# write in csv file
+write.table(shape_LLaMA3_scale_results,"shape_LLaMA3_scale_results.csv",sep = ",")
+
+
+
+
 
 #### scale correlation 
 calculate_dimension_score <- function(data, indices) {
@@ -801,6 +1024,32 @@ correlation_matrix_shape_GPT4 <- cor(dimension_scores)
 print(correlation_matrix_shape_GPT4)
 
 
+# persona_LLaMA3
+data_persona_LLaMA3$Extraversion <- calculate_dimension_score(data_persona_LLaMA3, Extraversion) 
+data_persona_LLaMA3$Agreeableness <- calculate_dimension_score(data_persona_LLaMA3, Agreeableness)
+data_persona_LLaMA3$Conscientiousness <- calculate_dimension_score(data_persona_LLaMA3, Conscientiousness)
+data_persona_LLaMA3$Neuroticism <- calculate_dimension_score(data_persona_LLaMA3, Neuroticism)
+data_persona_LLaMA3$Openness <- calculate_dimension_score(data_persona_LLaMA3, Openness)
+
+dimension_scores <- data_persona_LLaMA3[, c("Extraversion", "Agreeableness", "Conscientiousness", "Neuroticism", "Openness")]
+correlation_matrix_persona_LLaMA3 <- cor(dimension_scores)
+
+print(correlation_matrix_persona_LLaMA3)
+
+
+# shape_LLaMA3
+data_shape_LLaMA3$Extraversion <- calculate_dimension_score(data_shape_LLaMA3, Extraversion) 
+data_shape_LLaMA3$Agreeableness <- calculate_dimension_score(data_shape_LLaMA3, Agreeableness)
+data_shape_LLaMA3$Conscientiousness <- calculate_dimension_score(data_shape_LLaMA3, Conscientiousness)
+data_shape_LLaMA3$Neuroticism <- calculate_dimension_score(data_shape_LLaMA3, Neuroticism)
+data_shape_LLaMA3$Openness <- calculate_dimension_score(data_shape_LLaMA3, Openness)
+
+dimension_scores <- data_shape_LLaMA3[, c("Extraversion", "Agreeableness", "Conscientiousness", "Neuroticism", "Openness")]
+correlation_matrix_shape_LLaMA3 <- cor(dimension_scores)
+
+print(correlation_matrix_shape_LLaMA3)
+
+
 
 
 
@@ -862,6 +1111,32 @@ profile_correlation_shape_GPT4.mean_old_people
 
 
 
+# persona_LLaMA3 ~ normal_human
+mae_persona_LLaMA3.mean_normal_human <- mean(abs(item_BFI2_mean$normal_human.mean - item_BFI2_mean$persona_LLaMA3.mean))
+profile_correlation_persona_LLaMA3.mean_normal_human <- cor(item_BFI2_mean$normal_human.mean, item_BFI2_mean$persona_LLaMA3.mean)
+mae_persona_LLaMA3.mean_normal_human
+profile_correlation_persona_LLaMA3.mean_normal_human
+
+# persona_LLaMA3 ~ old_people
+mae_persona_LLaMA3.mean_old_people <- mean(abs(item_BFI2_mean$old_people.mean - item_BFI2_mean$persona_LLaMA3.mean))
+profile_correlation_persona_LLaMA3.mean_old_people <- cor(item_BFI2_mean$old_people.mean, item_BFI2_mean$persona_LLaMA3.mean)
+mae_persona_LLaMA3.mean_old_people
+profile_correlation_persona_LLaMA3.mean_old_people
+
+# shape_LLaMA3 ~ normal_human
+mae_shape_LLaMA3.mean_normal_human <- mean(abs(item_BFI2_mean$normal_human.mean - item_BFI2_mean$shape_LLaMA3.mean))
+profile_correlation_shape_LLaMA3.mean_normal_human <- cor(item_BFI2_mean$normal_human.mean, item_BFI2_mean$shape_LLaMA3.mean)
+mae_shape_LLaMA3.mean_normal_human
+profile_correlation_shape_LLaMA3.mean_normal_human
+
+# shape_LLaMA3 ~ old_people
+mae_shape_LLaMA3.mean_old_people <- mean(abs(item_BFI2_mean$old_people.mean - item_BFI2_mean$shape_LLaMA3.mean))
+profile_correlation_shape_LLaMA3.mean_old_people <- cor(item_BFI2_mean$old_people.mean, item_BFI2_mean$shape_LLaMA3.mean)
+mae_shape_LLaMA3.mean_old_people
+profile_correlation_shape_LLaMA3.mean_old_people
+
+
+
 
 # item sd
 item_BFI2_sd <- read.table("Summary_data/item_BFI2_sd.csv",sep = ",", header = T)
@@ -915,6 +1190,31 @@ mae_shape_GPT4.sd_old_people <- mean(abs(item_BFI2_sd$old_people.sd - item_BFI2_
 profile_correlation_shape_GPT4.sd_old_people <- cor(item_BFI2_sd$old_people.sd, item_BFI2_sd$shape_GPT4.sd)
 mae_shape_GPT4.sd_old_people
 profile_correlation_shape_GPT4.sd_old_people
+
+
+# persona_LLaMA3 ~ normal_human
+mae_persona_LLaMA3.sd_normal_human <- mean(abs(item_BFI2_sd$normal_human.sd - item_BFI2_sd$persona_LLaMA3.sd))
+profile_correlation_persona_LLaMA3.sd_normal_human <- cor(item_BFI2_sd$normal_human.sd, item_BFI2_sd$persona_LLaMA3.sd)
+mae_persona_LLaMA3.sd_normal_human
+profile_correlation_persona_LLaMA3.sd_normal_human
+
+# persona_LLaMA3 ~ old_people
+mae_persona_LLaMA3.sd_old_people <- mean(abs(item_BFI2_sd$old_people.sd - item_BFI2_sd$persona_LLaMA3.sd))
+profile_correlation_persona_LLaMA3.sd_old_people <- cor(item_BFI2_sd$old_people.sd, item_BFI2_sd$persona_LLaMA3.sd)
+mae_persona_LLaMA3.sd_old_people
+profile_correlation_persona_LLaMA3.sd_old_people
+
+# shape_LLaMA3 ~ normal_human
+mae_shape_LLaMA3.sd_normal_human <- mean(abs(item_BFI2_sd$normal_human.sd - item_BFI2_sd$shape_LLaMA3.sd))
+profile_correlation_shape_LLaMA3.sd_normal_human <- cor(item_BFI2_sd$normal_human.sd, item_BFI2_sd$shape_LLaMA3.sd)
+mae_shape_LLaMA3.sd_normal_human
+profile_correlation_shape_LLaMA3.sd_normal_human
+
+# shape_LLaMA3 ~ old_people
+mae_shape_LLaMA3.sd_old_people <- mean(abs(item_BFI2_sd$old_people.sd - item_BFI2_sd$shape_LLaMA3.sd))
+profile_correlation_shape_LLaMA3.sd_old_people <- cor(item_BFI2_sd$old_people.sd, item_BFI2_sd$shape_LLaMA3.sd)
+mae_shape_LLaMA3.sd_old_people
+profile_correlation_shape_LLaMA3.sd_old_people
 
 
 
@@ -974,6 +1274,30 @@ mae_shape_GPT4.mean_old_people
 profile_correlation_shape_GPT4.mean_old_people
 
 
+# persona_LLaMA3 ~ normal_human
+mae_persona_LLaMA3.mean_normal_human <- mean(abs(facet_BFI2_mean$normal_human.mean - facet_BFI2_mean$persona_LLaMA3.mean))
+profile_correlation_persona_LLaMA3.mean_normal_human <- cor(facet_BFI2_mean$normal_human.mean, facet_BFI2_mean$persona_LLaMA3.mean)
+mae_persona_LLaMA3.mean_normal_human
+profile_correlation_persona_LLaMA3.mean_normal_human
+
+# persona_LLaMA3 ~ old_people
+mae_persona_LLaMA3.mean_old_people <- mean(abs(facet_BFI2_mean$old_people.mean - facet_BFI2_mean$persona_LLaMA3.mean))
+profile_correlation_persona_LLaMA3.mean_old_people <- cor(facet_BFI2_mean$old_people.mean, facet_BFI2_mean$persona_LLaMA3.mean)
+mae_persona_LLaMA3.mean_old_people
+profile_correlation_persona_LLaMA3.mean_old_people
+
+# shape_LLaMA3 ~ normal_human
+mae_shape_LLaMA3.mean_normal_human <- mean(abs(facet_BFI2_mean$normal_human.mean - facet_BFI2_mean$shape_LLaMA3.mean))
+profile_correlation_shape_LLaMA3.mean_normal_human <- cor(facet_BFI2_mean$normal_human.mean, facet_BFI2_mean$shape_LLaMA3.mean)
+mae_shape_LLaMA3.mean_normal_human
+profile_correlation_shape_LLaMA3.mean_normal_human
+
+# shape_LLaMA3 ~ old_people
+mae_shape_LLaMA3.mean_old_people <- mean(abs(facet_BFI2_mean$old_people.mean - facet_BFI2_mean$shape_LLaMA3.mean))
+profile_correlation_shape_LLaMA3.mean_old_people <- cor(facet_BFI2_mean$old_people.mean, facet_BFI2_mean$shape_LLaMA3.mean)
+mae_shape_LLaMA3.mean_old_people
+profile_correlation_shape_LLaMA3.mean_old_people
+
 
 
 
@@ -1030,6 +1354,31 @@ mae_shape_GPT4.sd_old_people <- mean(abs(facet_BFI2_sd$old_people.sd - facet_BFI
 profile_correlation_shape_GPT4.sd_old_people <- cor(facet_BFI2_sd$old_people.sd, facet_BFI2_sd$shape_GPT4.sd)
 mae_shape_GPT4.sd_old_people
 profile_correlation_shape_GPT4.sd_old_people
+
+
+# persona_LLaMA3 ~ normal_human
+mae_persona_LLaMA3.sd_normal_human <- mean(abs(facet_BFI2_sd$normal_human.sd - facet_BFI2_sd$persona_LLaMA3.sd))
+profile_correlation_persona_LLaMA3.sd_normal_human <- cor(facet_BFI2_sd$normal_human.sd, facet_BFI2_sd$persona_LLaMA3.sd)
+mae_persona_LLaMA3.sd_normal_human
+profile_correlation_persona_LLaMA3.sd_normal_human
+
+# persona_LLaMA3 ~ old_people
+mae_persona_LLaMA3.sd_old_people <- mean(abs(facet_BFI2_sd$old_people.sd - facet_BFI2_sd$persona_LLaMA3.sd))
+profile_correlation_persona_LLaMA3.sd_old_people <- cor(facet_BFI2_sd$old_people.sd, facet_BFI2_sd$persona_LLaMA3.sd)
+mae_persona_LLaMA3.sd_old_people
+profile_correlation_persona_LLaMA3.sd_old_people
+
+# shape_LLaMA3 ~ normal_human
+mae_shape_LLaMA3.sd_normal_human <- mean(abs(facet_BFI2_sd$normal_human.sd - facet_BFI2_sd$shape_LLaMA3.sd))
+profile_correlation_shape_LLaMA3.sd_normal_human <- cor(facet_BFI2_sd$normal_human.sd, facet_BFI2_sd$shape_LLaMA3.sd)
+mae_shape_LLaMA3.sd_normal_human
+profile_correlation_shape_LLaMA3.sd_normal_human
+
+# shape_LLaMA3 ~ old_people
+mae_shape_LLaMA3.sd_old_people <- mean(abs(facet_BFI2_sd$old_people.sd - facet_BFI2_sd$shape_LLaMA3.sd))
+profile_correlation_shape_LLaMA3.sd_old_people <- cor(facet_BFI2_sd$old_people.sd, facet_BFI2_sd$shape_LLaMA3.sd)
+mae_shape_LLaMA3.sd_old_people
+profile_correlation_shape_LLaMA3.sd_old_people
 
 
 
@@ -1089,6 +1438,31 @@ mae_shape_GPT4.mean_old_people
 profile_correlation_shape_GPT4.mean_old_people
 
 
+# persona_LLaMA3 ~ normal_human
+mae_persona_LLaMA3.mean_normal_human <- mean(abs(domain_BFI2_mean$normal_human.mean - domain_BFI2_mean$persona_LLaMA3.mean))
+profile_correlation_persona_LLaMA3.mean_normal_human <- cor(domain_BFI2_mean$normal_human.mean, domain_BFI2_mean$persona_LLaMA3.mean)
+mae_persona_LLaMA3.mean_normal_human
+profile_correlation_persona_LLaMA3.mean_normal_human
+
+# persona_LLaMA3 ~ old_people
+mae_persona_LLaMA3.mean_old_people <- mean(abs(domain_BFI2_mean$old_people.mean - domain_BFI2_mean$persona_LLaMA3.mean))
+profile_correlation_persona_LLaMA3.mean_old_people <- cor(domain_BFI2_mean$old_people.mean, domain_BFI2_mean$persona_LLaMA3.mean)
+mae_persona_LLaMA3.mean_old_people
+profile_correlation_persona_LLaMA3.mean_old_people
+
+# shape_LLaMA3 ~ normal_human
+mae_shape_LLaMA3.mean_normal_human <- mean(abs(domain_BFI2_mean$normal_human.mean - domain_BFI2_mean$shape_LLaMA3.mean))
+profile_correlation_shape_LLaMA3.mean_normal_human <- cor(domain_BFI2_mean$normal_human.mean, domain_BFI2_mean$shape_LLaMA3.mean)
+mae_shape_LLaMA3.mean_normal_human
+profile_correlation_shape_LLaMA3.mean_normal_human
+
+# shape_LLaMA3 ~ old_people
+mae_shape_LLaMA3.mean_old_people <- mean(abs(domain_BFI2_mean$old_people.mean - domain_BFI2_mean$shape_LLaMA3.mean))
+profile_correlation_shape_LLaMA3.mean_old_people <- cor(domain_BFI2_mean$old_people.mean, domain_BFI2_mean$shape_LLaMA3.mean)
+mae_shape_LLaMA3.mean_old_people
+profile_correlation_shape_LLaMA3.mean_old_people
+
+
 
 
 # domain sd
@@ -1146,6 +1520,32 @@ profile_correlation_shape_GPT4.sd_old_people
 
 
 
+# persona_LLaMA3 ~ normal_human
+mae_persona_LLaMA3.sd_normal_human <- mean(abs(domain_BFI2_sd$normal_human.sd - domain_BFI2_sd$persona_LLaMA3.sd))
+profile_correlation_persona_LLaMA3.sd_normal_human <- cor(domain_BFI2_sd$normal_human.sd, domain_BFI2_sd$persona_LLaMA3.sd)
+mae_persona_LLaMA3.sd_normal_human
+profile_correlation_persona_LLaMA3.sd_normal_human
+
+# persona_LLaMA3 ~ old_people
+mae_persona_LLaMA3.sd_old_people <- mean(abs(domain_BFI2_sd$old_people.sd - domain_BFI2_sd$persona_LLaMA3.sd))
+profile_correlation_persona_LLaMA3.sd_old_people <- cor(domain_BFI2_sd$old_people.sd, domain_BFI2_sd$persona_LLaMA3.sd)
+mae_persona_LLaMA3.sd_old_people
+profile_correlation_persona_LLaMA3.sd_old_people
+
+# shape_LLaMA3 ~ normal_human
+mae_shape_LLaMA3.sd_normal_human <- mean(abs(domain_BFI2_sd$normal_human.sd - domain_BFI2_sd$shape_LLaMA3.sd))
+profile_correlation_shape_LLaMA3.sd_normal_human <- cor(domain_BFI2_sd$normal_human.sd, domain_BFI2_sd$shape_LLaMA3.sd)
+mae_shape_LLaMA3.sd_normal_human
+profile_correlation_shape_LLaMA3.sd_normal_human
+
+# shape_LLaMA3 ~ old_people
+mae_shape_LLaMA3.sd_old_people <- mean(abs(domain_BFI2_sd$old_people.sd - domain_BFI2_sd$shape_LLaMA3.sd))
+profile_correlation_shape_LLaMA3.sd_old_people <- cor(domain_BFI2_sd$old_people.sd, domain_BFI2_sd$shape_LLaMA3.sd)
+mae_shape_LLaMA3.sd_old_people
+profile_correlation_shape_LLaMA3.sd_old_people
+
+
+
 #######################################SEM########################################
 
 
@@ -1157,6 +1557,19 @@ colnames(data_shape_GPT3.5) <- paste0("item", 1:60)
 
 colnames(data_persona_GPT4) <- paste0("item", 1:60)
 colnames(data_shape_GPT4) <- paste0("item", 1:60)
+
+colnames(data_persona_LLaMA3) <- paste0("item", 1:60)
+colnames(data_shape_LLaMA3) <- paste0("item", 1:60)
+
+
+write.csv(data_normal_human, "data_normal_human.csv", row.names = FALSE)
+write.csv(data_persona_GPT3.5, "data_persona_GPT3.5.csv", row.names = FALSE)
+write.csv(data_shape_GPT3.5, "data_shape_GPT3.5.csv", row.names = FALSE)
+write.csv(data_persona_GPT4, "data_persona_GPT4.csv", row.names = FALSE)
+write.csv(data_shape_GPT4, "data_shape_GPT4.csv", row.names = FALSE)
+write.csv(data_persona_LLaMA3, "data_persona_LLaMA3.csv", row.names = FALSE)
+write.csv(data_shape_LLaMA3, "data_shape_LLaMA3.csv", row.names = FALSE)
+
 
 #### Factor analysis to examine structural validity 
 
@@ -1222,6 +1635,20 @@ fit.shape_GPT4.con <- lavaan::sem(mod.con,data = data_shape_GPT4,std.lv=T)
 fit.shape_GPT4.neu <- lavaan::sem(mod.neu,data = data_shape_GPT4,std.lv=T)
 fit.shape_GPT4.ope <- lavaan::sem(mod.ope,data = data_shape_GPT4,std.lv=T)
 
+# persona_LLaMA3
+fit.persona_LLaMA3.ext <- lavaan::sem(mod.ext,data = data_persona_LLaMA3,std.lv=T)
+fit.persona_LLaMA3.agr <- lavaan::sem(mod.agr,data = data_persona_LLaMA3,std.lv=T)
+fit.persona_LLaMA3.con <- lavaan::sem(mod.con,data = data_persona_LLaMA3,std.lv=T)
+fit.persona_LLaMA3.neu <- lavaan::sem(mod.neu,data = data_persona_LLaMA3,std.lv=T)
+fit.persona_LLaMA3.ope <- lavaan::sem(mod.ope,data = data_persona_LLaMA3,std.lv=T)
+
+# shape_LLaMA3
+fit.shape_LLaMA3.ext <- lavaan::sem(mod.ext,data = data_shape_LLaMA3,std.lv=T)
+fit.shape_LLaMA3.agr <- lavaan::sem(mod.agr,data = data_shape_LLaMA3,std.lv=T)
+fit.shape_LLaMA3.con <- lavaan::sem(mod.con,data = data_shape_LLaMA3,std.lv=T)
+fit.shape_LLaMA3.neu <- lavaan::sem(mod.neu,data = data_shape_LLaMA3,std.lv=T)
+fit.shape_LLaMA3.ope <- lavaan::sem(mod.ope,data = data_shape_LLaMA3,std.lv=T)
+
 # check results 
 lavaan::summary(fit.normal_human.ext,standardized=T,fit=T)
 lavaan::summary(fit.old_people.ext,standardized=T,fit=T)
@@ -1273,6 +1700,8 @@ mod.fit <- t(data.frame(
   ext.shape_GPT3.5 = fitMeasures(fit.shape_GPT3.5.ext, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
   ext.persona_GPT4 = fitMeasures(fit.persona_GPT4.ext, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
   ext.shape_GPT4 = fitMeasures(fit.shape_GPT4.ext, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
+  ext.persona_LLaMA3 = fitMeasures(fit.persona_LLaMA3.ext, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
+  ext.shape_LLaMA3 = fitMeasures(fit.shape_LLaMA3.ext, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
   
   agr.normal_human = fitMeasures(fit.normal_human.agr, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
   agr.old_people = fitMeasures(fit.old_people.agr, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
@@ -1280,6 +1709,8 @@ mod.fit <- t(data.frame(
   agr.shape_GPT3.5 = fitMeasures(fit.shape_GPT3.5.agr, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
   agr.persona_GPT4 = fitMeasures(fit.persona_GPT4.agr, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
   agr.shape_GPT4 = fitMeasures(fit.shape_GPT4.agr, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
+  agr.persona_LLaMA3 = fitMeasures(fit.persona_LLaMA3.agr, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
+  agr.shape_LLaMA3 = fitMeasures(fit.shape_LLaMA3.agr, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
   
   con.normal_human = fitMeasures(fit.normal_human.con, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
   con.old_people = fitMeasures(fit.old_people.con, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
@@ -1287,6 +1718,8 @@ mod.fit <- t(data.frame(
   con.shape_GPT3.5 = fitMeasures(fit.shape_GPT3.5.con, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
   con.persona_GPT4 = fitMeasures(fit.persona_GPT4.con, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
   con.shape_GPT4 = fitMeasures(fit.shape_GPT4.con, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
+  con.persona_LLaMA3 = fitMeasures(fit.persona_LLaMA3.con, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
+  con.shape_LLaMA3 = fitMeasures(fit.shape_LLaMA3.con, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
   
   neu.normal_human = fitMeasures(fit.normal_human.neu, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
   neu.old_people = fitMeasures(fit.old_people.neu, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
@@ -1294,13 +1727,17 @@ mod.fit <- t(data.frame(
   neu.shape_GPT3.5 = fitMeasures(fit.shape_GPT3.5.neu, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
   neu.persona_GPT4 = fitMeasures(fit.persona_GPT4.neu, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
   neu.shape_GPT4 = fitMeasures(fit.shape_GPT4.neu, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
+  neu.persona_LLaMA3 = fitMeasures(fit.persona_LLaMA3.neu, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
+  neu.shape_LLaMA3 = fitMeasures(fit.shape_LLaMA3.neu, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
   
   ope.normal_human = fitMeasures(fit.normal_human.ope, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
   ope.old_people = fitMeasures(fit.old_people.ope, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
   ope.persona_GPT3.5 = fitMeasures(fit.persona_GPT3.5.ope, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
   ope.shape_GPT3.5 = fitMeasures(fit.shape_GPT3.5.ope, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
   ope.persona_GPT4 = fitMeasures(fit.persona_GPT4.ope, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
-  ope.shape_GPT4 = fitMeasures(fit.shape_GPT4.ope, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean"))
+  ope.shape_GPT4 = fitMeasures(fit.shape_GPT4.ope, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
+  ope.persona_LLaMA3 = fitMeasures(fit.persona_LLaMA3.ope, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
+  ope.shape_LLaMA3 = fitMeasures(fit.shape_LLaMA3.ope, fit.measures = c("chisq.scaled","df", "cfi", "tli", "rmsea","srmr_bentler_nomean"))
   
 )
 )
@@ -1317,6 +1754,8 @@ loadings <- data.frame(
   shape_GPT3.5.ext = lavaan::standardizedsolution(fit.shape_GPT3.5.ext)[1:24,"est.std"],
   persona_GPT4.ext = lavaan::standardizedsolution(fit.persona_GPT4.ext)[1:24,"est.std"],
   shape_GPT4.ext = lavaan::standardizedsolution(fit.shape_GPT4.ext)[1:24,"est.std"],
+  persona_LLaMA3.ext = lavaan::standardizedsolution(fit.persona_LLaMA3.ext)[1:24,"est.std"],
+  shape_LLaMA3.ext = lavaan::standardizedsolution(fit.shape_LLaMA3.ext)[1:24,"est.std"],
   
   normal_human.agr = lavaan::standardizedsolution(fit.normal_human.agr)[1:24,"est.std"],
   old_people.agr = lavaan::standardizedsolution(fit.old_people.agr)[1:24,"est.std"],
@@ -1324,6 +1763,8 @@ loadings <- data.frame(
   shape_GPT3.5.agr = lavaan::standardizedsolution(fit.shape_GPT3.5.agr)[1:24,"est.std"],
   persona_GPT4.agr = lavaan::standardizedsolution(fit.persona_GPT4.agr)[1:24,"est.std"],
   shape_GPT4.agr = lavaan::standardizedsolution(fit.shape_GPT4.agr)[1:24,"est.std"],
+  persona_LLaMA3.agr = lavaan::standardizedsolution(fit.persona_LLaMA3.agr)[1:24,"est.std"],
+  shape_LLaMA3.agr = lavaan::standardizedsolution(fit.shape_LLaMA3.agr)[1:24,"est.std"],
   
   normal_human.con = lavaan::standardizedsolution(fit.normal_human.con)[1:24,"est.std"],
   old_people.con = lavaan::standardizedsolution(fit.old_people.con)[1:24,"est.std"],
@@ -1331,6 +1772,8 @@ loadings <- data.frame(
   shape_GPT3.5.con = lavaan::standardizedsolution(fit.shape_GPT3.5.con)[1:24,"est.std"],
   persona_GPT4.con = lavaan::standardizedsolution(fit.persona_GPT4.con)[1:24,"est.std"],
   shape_GPT4.con = lavaan::standardizedsolution(fit.shape_GPT4.con)[1:24,"est.std"],
+  persona_LLaMA3.con = lavaan::standardizedsolution(fit.persona_LLaMA3.con)[1:24,"est.std"],
+  shape_LLaMA3.con = lavaan::standardizedsolution(fit.shape_LLaMA3.con)[1:24,"est.std"],
   
   normal_human.neu = lavaan::standardizedsolution(fit.normal_human.neu)[1:24,"est.std"],
   old_people.neu = lavaan::standardizedsolution(fit.old_people.neu)[1:24,"est.std"],
@@ -1338,13 +1781,17 @@ loadings <- data.frame(
   shape_GPT3.5.neu = lavaan::standardizedsolution(fit.shape_GPT3.5.neu)[1:24,"est.std"],
   persona_GPT4.neu = lavaan::standardizedsolution(fit.persona_GPT4.neu)[1:24,"est.std"],
   shape_GPT4.neu = lavaan::standardizedsolution(fit.shape_GPT4.neu)[1:24,"est.std"],
+  persona_LLaMA3.neu = lavaan::standardizedsolution(fit.persona_LLaMA3.neu)[1:24,"est.std"],
+  shape_LLaMA3.neu = lavaan::standardizedsolution(fit.shape_LLaMA3.neu)[1:24,"est.std"],
   
   normal_human.ope = lavaan::standardizedsolution(fit.normal_human.ope)[1:24,"est.std"],
   old_people.ope = lavaan::standardizedsolution(fit.old_people.ope)[1:24,"est.std"],
   persona_GPT3.5.ope = lavaan::standardizedsolution(fit.persona_GPT3.5.ope)[1:24,"est.std"],
   shape_GPT3.5.ope = lavaan::standardizedsolution(fit.shape_GPT3.5.ope)[1:24,"est.std"],
   persona_GPT4.ope = lavaan::standardizedsolution(fit.persona_GPT4.ope)[1:24,"est.std"],
-  shape_GPT4.ope = lavaan::standardizedsolution(fit.shape_GPT4.ope)[1:24,"est.std"]
+  shape_GPT4.ope = lavaan::standardizedsolution(fit.shape_GPT4.ope)[1:24,"est.std"],
+  persona_LLaMA3.ope = lavaan::standardizedsolution(fit.persona_LLaMA3.ope)[1:24,"est.std"],
+  shape_LLaMA3.ope = lavaan::standardizedsolution(fit.shape_LLaMA3.ope)[1:24,"est.std"]
   
 )
 
@@ -1362,6 +1809,8 @@ correlations <- data.frame(
   shape_GPT3.5.ext = lavaan::standardizedsolution(fit.shape_GPT3.5.ext)[25:30,"est.std"],
   persona_GPT4.ext = lavaan::standardizedsolution(fit.persona_GPT4.ext)[25:30,"est.std"],
   shape_GPT4.ext = lavaan::standardizedsolution(fit.shape_GPT4.ext)[25:30,"est.std"],
+  persona_LLaMA3.ext = lavaan::standardizedsolution(fit.persona_LLaMA3.ext)[25:30,"est.std"],
+  shape_LLaMA3.ext = lavaan::standardizedsolution(fit.shape_LLaMA3.ext)[25:30,"est.std"],
   
   normal_human.agr = lavaan::standardizedsolution(fit.normal_human.agr)[25:30,"est.std"],
   old_people.agr = lavaan::standardizedsolution(fit.old_people.agr)[25:30,"est.std"],
@@ -1369,6 +1818,8 @@ correlations <- data.frame(
   shape_GPT3.5.agr = lavaan::standardizedsolution(fit.shape_GPT3.5.agr)[25:30,"est.std"],
   persona_GPT4.agr = lavaan::standardizedsolution(fit.persona_GPT4.agr)[25:30,"est.std"],
   shape_GPT4.agr = lavaan::standardizedsolution(fit.shape_GPT4.agr)[25:30,"est.std"],
+  persona_LLaMA3.agr = lavaan::standardizedsolution(fit.persona_LLaMA3.agr)[25:30,"est.std"],
+  shape_LLaMA3.agr = lavaan::standardizedsolution(fit.shape_LLaMA3.agr)[25:30,"est.std"],
   
   normal_human.con = lavaan::standardizedsolution(fit.normal_human.con)[25:30,"est.std"],
   old_people.con = lavaan::standardizedsolution(fit.old_people.con)[25:30,"est.std"],
@@ -1376,6 +1827,8 @@ correlations <- data.frame(
   shape_GPT3.5.con = lavaan::standardizedsolution(fit.shape_GPT3.5.con)[25:30,"est.std"],
   persona_GPT4.con = lavaan::standardizedsolution(fit.persona_GPT4.con)[25:30,"est.std"],
   shape_GPT4.con = lavaan::standardizedsolution(fit.shape_GPT4.con)[25:30,"est.std"],
+  persona_LLaMA3.con = lavaan::standardizedsolution(fit.persona_LLaMA3.con)[25:30,"est.std"],
+  shape_LLaMA3.con = lavaan::standardizedsolution(fit.shape_LLaMA3.con)[25:30,"est.std"],
   
   normal_human.neu = lavaan::standardizedsolution(fit.normal_human.neu)[25:30,"est.std"],
   old_people.neu = lavaan::standardizedsolution(fit.old_people.neu)[25:30,"est.std"],
@@ -1383,17 +1836,140 @@ correlations <- data.frame(
   shape_GPT3.5.neu = lavaan::standardizedsolution(fit.shape_GPT3.5.neu)[25:30,"est.std"],
   persona_GPT4.neu = lavaan::standardizedsolution(fit.persona_GPT4.neu)[25:30,"est.std"],
   shape_GPT4.neu = lavaan::standardizedsolution(fit.shape_GPT4.neu)[25:30,"est.std"],
+  persona_LLaMA3.neu = lavaan::standardizedsolution(fit.persona_LLaMA3.neu)[25:30,"est.std"],
+  shape_LLaMA3.neu = lavaan::standardizedsolution(fit.shape_LLaMA3.neu)[25:30,"est.std"],
   
   normal_human.ope = lavaan::standardizedsolution(fit.normal_human.ope)[25:30,"est.std"],
   old_people.ope = lavaan::standardizedsolution(fit.old_people.ope)[25:30,"est.std"],
   persona_GPT3.5.ope = lavaan::standardizedsolution(fit.persona_GPT3.5.ope)[25:30,"est.std"],
   shape_GPT3.5.ope = lavaan::standardizedsolution(fit.shape_GPT3.5.ope)[25:30,"est.std"],
   persona_GPT4.ope = lavaan::standardizedsolution(fit.persona_GPT4.ope)[25:30,"est.std"],
-  shape_GPT4.ope = lavaan::standardizedsolution(fit.shape_GPT4.ope)[25:30,"est.std"]
+  shape_GPT4.ope = lavaan::standardizedsolution(fit.shape_GPT4.ope)[25:30,"est.std"],
+  persona_LLaMA3.ope = lavaan::standardizedsolution(fit.persona_LLaMA3.ope)[25:30,"est.std"],
+  shape_LLaMA3.ope = lavaan::standardizedsolution(fit.shape_LLaMA3.ope)[25:30,"est.std"]
 
 )
 
 write.table(correlations,"correlations.csv",sep = ",")
+
+
+
+
+
+#######################social_desirability###################
+data_normal_human <- read.table("Data/human_normal.csv",sep = ",",header = T)
+data_normal_human <- na.omit(data_normal_human)
+data_old_people <- read.table("Data/old_people.csv",sep = ",",header = T)
+data_old_people <- na.omit(data_old_people)
+
+data_persona_GPT3.5 <- read.table("Data/GPT_3.5/persona_bfi60_3.5.csv",sep = ",",header = T)
+data_shape_GPT3.5 <- read.table("Data/GPT_3.5/shape_bfi60_300_3.5.csv",sep = ",",header = T)
+data_persona_GPT4 <- read.table("Data/GPT_4/persona_bfi60_4.csv",sep = ",",header = T)
+data_shape_GPT4 <- read.table("Data/GPT_4/shape_bfi60_300_4.csv",sep = ",",header = T)
+data_persona_LLaMA3 <- read.table("Data/LLaMA3/persona_bfi60_instruction.csv",sep = ",",header = T)
+data_shape_LLaMA3 <- read.table("Data/LLaMA3/shape_bfi60_instruction_300.csv",sep = ",",header = T)
+
+data_normal_human <- data_normal_human[2: 61]
+data_old_people <- data_old_people[21: 80]
+data_persona_GPT3.5 <- data_persona_GPT3.5[2: 61]
+data_shape_GPT3.5 <- data_shape_GPT3.5[2: 61]
+data_persona_GPT4 <- data_persona_GPT4[2: 61]
+data_shape_GPT4 <- data_shape_GPT4[2: 61]
+data_persona_LLaMA3 <- data_persona_LLaMA3[2: 61]
+data_shape_LLaMA3 <- data_shape_LLaMA3[2: 61]
+
+filter_data <- function(df) {
+  df[apply(df, 1, function(row) all(row >= 1 & row <= 5)), ]
+}
+data_normal_human <- filter_data(data_normal_human)
+data_old_people <- filter_data(data_old_people)
+data_persona_GPT3.5 <- filter_data(data_persona_GPT3.5)
+data_shape_GPT3.5 <- filter_data(data_shape_GPT3.5)
+data_persona_GPT4 <- filter_data(data_persona_GPT4)
+data_shape_GPT4 <- filter_data(data_shape_GPT4)
+data_persona_LLaMA3 <- filter_data(data_persona_LLaMA3)
+data_shape_LLaMA3 <- filter_data(data_shape_LLaMA3)
+
+# item.results.normal_human <- describeBy(data_normal_human)
+# item.results.old_people <- describeBy(data_old_people)
+# item.results.persona_GPT3.5 <- describeBy(data_persona_GPT3.5)
+# item.results.shape_GPT3.5 <- describeBy(data_shape_GPT3.5)
+# item.results.persona_GPT4 <- describeBy(data_persona_GPT4)
+# item.results.shape_GPT4 <- describeBy(data_shape_GPT4)
+# item.results.persona_LLaMA3 <- describeBy(data_persona_LLaMA3)
+# item.results.shape_LLaMA3 <- describeBy(data_shape_LLaMA3)
+# 
+# table.item <- data.frame(normal_human.mean = item.results.normal_human[,c("mean")],
+#                          old_people.mean = item.results.old_people[,c("mean")],
+#                          
+#                          persona_GPT3.5.mean = item.results.persona_GPT3.5[,c("mean")],
+#                          shape_GPT3.5.mean = item.results.shape_GPT3.5[,c("mean")],
+#                          
+#                          persona_GPT4.mean = item.results.persona_GPT4[,c("mean")],
+#                          shape_GPT4.mean = item.results.shape_GPT4[,c("mean")],
+#                          
+#                          persona_LLaMA3.mean = item.results.persona_LLaMA3[,c("mean")],
+#                          shape_LLaMA3.mean = item.results.shape_LLaMA3[,c("mean")],
+#                          
+#                          normal_human.sd = item.results.normal_human[,c("sd")],
+#                          old_people.sd = item.results.old_people[,c("sd")],
+#                          
+#                          persona_GPT3.5.sd = item.results.persona_GPT3.5[,c("sd")],
+#                          shape_GPT3.5.sd = item.results.shape_GPT3.5[,c("sd")],
+#                          
+#                          persona_GPT4.sd = item.results.persona_GPT4[,c("sd")],
+#                          shape_GPT4.sd = item.results.shape_GPT4[,c("sd")],
+#                          persona_LLaMA3.sd = item.results.persona_LLaMA3[,c("sd")],
+#                          shape_LLaMA3.sd = item.results.shape_LLaMA3[,c("sd")]
+# )
+# 
+# # write in csv file
+# write.table(table.item,"table.item.csv",sep = ",")
+
+
+data_social_desirability <- read.table("Data/social_desirability.csv",sep = ",",header = T)
+
+correlation_matrix <- cor(data_social_desirability[c("Mean_SocialD", "normal_human.mean", "old_people.mean", 
+                                                     "persona_GPT3.5.mean", "shape_GPT3.5.mean", 
+                                                     "persona_GPT4.mean", "shape_GPT4.mean", 
+                                                     "persona_LLaMA3.mean", "shape_LLaMA3.mean")])
+
+print(correlation_matrix)
+
+
+library(ggcorrplot)
+ggcorrplot(correlation_matrix, 
+           method = "circle", 
+           type = "lower", 
+           lab = TRUE, 
+           title = "Correlation Matrix of Social Desirability Scores")
+
+
+cor.test(data_social_desirability$Mean_SocialD, data_social_desirability$normal_human.mean)
+cor.test(data_social_desirability$Mean_SocialD, data_social_desirability$old_people.mean)
+cor.test(data_social_desirability$Mean_SocialD, data_social_desirability$persona_GPT3.5.mean)
+cor.test(data_social_desirability$Mean_SocialD, data_social_desirability$shape_GPT3.5.mean)
+cor.test(data_social_desirability$Mean_SocialD, data_social_desirability$persona_GPT4.mean)
+cor.test(data_social_desirability$Mean_SocialD, data_social_desirability$shape_GPT4.mean)
+cor.test(data_social_desirability$Mean_SocialD, data_social_desirability$persona_LLaMA3.mean)
+cor.test(data_social_desirability$Mean_SocialD, data_social_desirability$shape_LLaMA3.mean)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
