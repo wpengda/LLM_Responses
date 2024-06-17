@@ -10,8 +10,8 @@ data_shape_GPT3.5 <- read.table("Data/GPT_3.5/shape_hexaco_300.csv", sep = ",", 
 data_persona_GPT4 <- read.table("Data/GPT_4/persona_hexaco.csv", sep = ",", header = TRUE, quote = "\"", dec = ".", fill = TRUE)
 data_shape_GPT4 <- read.table("Data/GPT_4/shape_hexaco_300.csv", sep = ",", header = TRUE, quote = "\"", dec = ".", fill = TRUE)
 
-data_persona_LLaMA3 <- read.table("Data/LLaMA3/persona_hexaco.csv", sep = ",", header = TRUE, quote = "\"", dec = ".", fill = TRUE)
-data_shape_LLaMA3 <- read.table("Data/LLaMA3/shape_hexaco_300.csv", sep = ",", header = TRUE, quote = "\"", dec = ".", fill = TRUE)
+data_persona_LLaMA3 <- read.table("Data/LLaMA3/persona_hexaco_instruction.csv", sep = ",", header = TRUE, quote = "\"", dec = ".", fill = TRUE)
+data_shape_LLaMA3 <- read.table("Data/LLaMA3/shape_hexaco_instruction_300.csv", sep = ",", header = TRUE, quote = "\"", dec = ".", fill = TRUE)
 
 
 # four data to compare

@@ -1,7 +1,7 @@
-﻿Item content,honest.mean,faking.mean,persona_GPT3.5.mean,shape_GPT3.5.mean,persona_GPT4.mean,shape_GPT4.mean
-Honesty_humility,3.6,3.99,3.75,3.72,3.25,3.47
-Emotionality,3.21,3.02,3.06,2.93,3.02,2.98
-Extraversion,3.41,3.91,3.12,2.98,3.06,3.01
-Agreeableness,3.11,3.67,3.15,3.17,2.99,2.97
-Conscientiousness,3.63,4.11,3.47,3.09,3.1,3.23
-Openness_to_experience,3.54,3.63,3.29,3.04,3.1,3.07
+﻿Item content,honest.mean,faking.mean,persona_GPT3.5.mean,shape_GPT3.5.mean,persona_GPT4.mean,shape_GPT4.mean,persona_LLaMA3.mean,shape_LLaMA3.mean
+Honesty_humility,3.6,3.99,3.75,3.72,3.25,3.47,4.11,3.52
+Emotionality,3.21,3.02,3.06,2.93,3.02,2.98,3.18,2.85
+Extraversion,3.41,3.91,3.12,2.98,3.06,3.01,3.35,2.99
+Agreeableness,3.11,3.67,3.15,3.17,2.99,2.97,3.23,3.17
+Conscientiousness,3.63,4.11,3.47,3.09,3.1,3.23,3.38,2.96
+Openness_to_experience,3.54,3.63,3.29,3.04,3.1,3.07,3.2,2.89
