@@ -129,7 +129,7 @@ table.item <- data.frame(
 )
 
 # write in csv file
-write.table(table.item,"table.item.csv",sep = ",")
+# write.table(table.item,"table.item.csv",sep = ",")
 
 
 
@@ -494,7 +494,7 @@ result_df <- data.frame(
 )
 
 # Write the data frame to a CSV file
-write.table(result_df, "alpha_HEXACO.csv", sep = ",", row.names = FALSE)
+# write.table(result_df, "alpha_HEXACO.csv", sep = ",", row.names = FALSE)
 
 
 
@@ -566,7 +566,7 @@ honest_facet_results <- data.frame(
 )
 
 # write in csv file
-write.table(honest_facet_results, "honest_HEXACO_facet_results.csv", sep = ",", row.names = FALSE)
+# write.table(honest_facet_results, "honest_HEXACO_facet_results.csv", sep = ",", row.names = FALSE)
 
 
 
@@ -637,7 +637,7 @@ faking_facet_results <- data.frame(
 )
 
 # write in csv file
-write.table(faking_facet_results, "faking_HEXACO_facet_results.csv", sep = ",", row.names = FALSE)
+# write.table(faking_facet_results, "faking_HEXACO_facet_results.csv", sep = ",", row.names = FALSE)
 
 
 
@@ -707,7 +707,7 @@ persona_GPT3.5_facet_results <- data.frame(
 )
 
 # write in csv file
-write.table(persona_GPT3.5_facet_results, "persona_GPT3.5_HEXACO_facet_results.csv", sep = ",", row.names = FALSE)
+# write.table(persona_GPT3.5_facet_results, "persona_GPT3.5_HEXACO_facet_results.csv", sep = ",", row.names = FALSE)
 
 
 # shape3.5
@@ -776,7 +776,7 @@ shape_GPT3.5_facet_results <- data.frame(
 )
 
 # write in csv file
-write.table(shape_GPT3.5_facet_results, "shape_GPT3.5_HEXACO_facet_results.csv", sep = ",", row.names = FALSE)
+# write.table(shape_GPT3.5_facet_results, "shape_GPT3.5_HEXACO_facet_results.csv", sep = ",", row.names = FALSE)
 
 
 
@@ -846,7 +846,7 @@ persona_GPT4_facet_results <- data.frame(
 )
 
 # write in csv file
-write.table(persona_GPT4_facet_results, "persona_GPT4_HEXACO_facet_results.csv", sep = ",", row.names = FALSE)
+# write.table(persona_GPT4_facet_results, "persona_GPT4_HEXACO_facet_results.csv", sep = ",", row.names = FALSE)
 
 
 # shape4
@@ -915,7 +915,7 @@ shape_GPT4_facet_results <- data.frame(
 )
 
 # write in csv file
-write.table(shape_GPT4_facet_results, "shape_GPT4_HEXACO_facet_results.csv", sep = ",", row.names = FALSE)
+# write.table(shape_GPT4_facet_results, "shape_GPT4_HEXACO_facet_results.csv", sep = ",", row.names = FALSE)
 
 
 # persona LLaMA3
@@ -984,7 +984,7 @@ persona_LLaMA3_facet_results <- data.frame(
 )
 
 # write in csv file
-write.table(persona_LLaMA3_facet_results, "persona_LLaMA3_HEXACO_facet_results.csv", sep = ",", row.names = FALSE)
+# write.table(persona_LLaMA3_facet_results, "persona_LLaMA3_HEXACO_facet_results.csv", sep = ",", row.names = FALSE)
 
 
 # shape LLaMA3
@@ -1053,7 +1053,7 @@ shape_LLaMA3_facet_results <- data.frame(
 )
 
 # write in csv file
-write.table(shape_LLaMA3_facet_results, "shape_LLaMA3_HEXACO_facet_results.csv", sep = ",", row.names = FALSE)
+# write.table(shape_LLaMA3_facet_results, "shape_LLaMA3_HEXACO_facet_results.csv", sep = ",", row.names = FALSE)
 
 
 
@@ -1081,7 +1081,7 @@ honest_domain_results <- data.frame(
 )
 
 # write in csv file
-write.table(honest_domain_results, "honest_HEXACO_domain_results.csv", sep = ",", row.names = FALSE)
+# write.table(honest_domain_results, "honest_HEXACO_domain_results.csv", sep = ",", row.names = FALSE)
 
 
 
@@ -1107,7 +1107,7 @@ faking_domain_results <- data.frame(
 )
 
 # write in csv file
-write.table(faking_domain_results, "faking_HEXACO_domain_results.csv", sep = ",", row.names = FALSE)
+# write.table(faking_domain_results, "faking_HEXACO_domain_results.csv", sep = ",", row.names = FALSE)
 
 
 
@@ -1133,7 +1133,7 @@ persona_GPT3.5_domain_results <- data.frame(
 )
 
 # write in csv file
-write.table(persona_GPT3.5_domain_results, "persona_GPT3.5_HEXACO_domain_results.csv", sep = ",", row.names = FALSE)
+# write.table(persona_GPT3.5_domain_results, "persona_GPT3.5_HEXACO_domain_results.csv", sep = ",", row.names = FALSE)
 
 
 
@@ -1159,7 +1159,7 @@ shape_GPT3.5_domain_results <- data.frame(
 )
 
 # write in csv file
-write.table(shape_GPT3.5_domain_results, "shape_GPT3.5_HEXACO_domain_results.csv", sep = ",", row.names = FALSE)
+# write.table(shape_GPT3.5_domain_results, "shape_GPT3.5_HEXACO_domain_results.csv", sep = ",", row.names = FALSE)
 
 
 
@@ -1185,7 +1185,7 @@ persona_GPT4_domain_results <- data.frame(
 )
 
 # write in csv file
-write.table(persona_GPT4_domain_results, "persona_GPT4_HEXACO_domain_results.csv", sep = ",", row.names = FALSE)
+# write.table(persona_GPT4_domain_results, "persona_GPT4_HEXACO_domain_results.csv", sep = ",", row.names = FALSE)
 
 
 
@@ -1211,7 +1211,7 @@ shape_GPT4_domain_results <- data.frame(
 )
 
 # write in csv file
-write.table(shape_GPT4_domain_results, "shape_GPT4_HEXACO_domain_results.csv", sep = ",", row.names = FALSE)
+# write.table(shape_GPT4_domain_results, "shape_GPT4_HEXACO_domain_results.csv", sep = ",", row.names = FALSE)
 
 
 # persona_LLaMA3
@@ -1236,7 +1236,7 @@ persona_LLaMA3_domain_results <- data.frame(
 )
 
 # write in csv file
-write.table(persona_LLaMA3_domain_results, "persona_LLaMA3_HEXACO_domain_results.csv", sep = ",", row.names = FALSE)
+# write.table(persona_LLaMA3_domain_results, "persona_LLaMA3_HEXACO_domain_results.csv", sep = ",", row.names = FALSE)
 
 
 
@@ -1262,7 +1262,7 @@ shape_LLaMA3_domain_results <- data.frame(
 )
 
 # write in csv file
-write.table(shape_LLaMA3_domain_results, "shape_LLaMA3_HEXACO_domain_results.csv", sep = ",", row.names = FALSE)
+# write.table(shape_LLaMA3_domain_results, "shape_LLaMA3_HEXACO_domain_results.csv", sep = ",", row.names = FALSE)
 
 
 
@@ -1270,7 +1270,7 @@ write.table(shape_LLaMA3_domain_results, "shape_LLaMA3_HEXACO_domain_results.csv
 #### scale correlation 
 # Helper function to calculate domain scores
 calculate_dimension_score <- function(data, indices) {
-  rowSums(data[, indices], na.rm = TRUE)
+  rowMeans(data[, indices], na.rm = TRUE)
 }
 
 # honest with HEXACO model
@@ -1914,13 +1914,13 @@ colnames(data_shape_GPT4) <- paste0("item", 1:100)
 colnames(data_persona_LLaMA3) <- paste0("item", 1:100)
 colnames(data_shape_LLaMA3) <- paste0("item", 1:100)
 
-write.csv(data_honest, "data_honest.csv", row.names = FALSE)
-write.csv(data_persona_GPT3.5, "data_persona_GPT3.5.csv", row.names = FALSE)
-write.csv(data_shape_GPT3.5, "data_shape_GPT3.5.csv", row.names = FALSE)
-write.csv(data_persona_GPT4, "data_persona_GPT4.csv", row.names = FALSE)
-write.csv(data_shape_GPT4, "data_shape_GPT4.csv", row.names = FALSE)
-write.csv(data_persona_LLaMA3, "data_persona_LLaMA3.csv", row.names = FALSE)
-write.csv(data_shape_LLaMA3, "data_shape_LLaMA3.csv", row.names = FALSE)
+#write.csv(data_honest, "data_honest.csv", row.names = FALSE)
+#write.csv(data_persona_GPT3.5, "data_persona_GPT3.5.csv", row.names = FALSE)
+#write.csv(data_shape_GPT3.5, "data_shape_GPT3.5.csv", row.names = FALSE)
+#write.csv(data_persona_GPT4, "data_persona_GPT4.csv", row.names = FALSE)
+#write.csv(data_shape_GPT4, "data_shape_GPT4.csv", row.names = FALSE)
+#write.csv(data_persona_LLaMA3, "data_persona_LLaMA3.csv", row.names = FALSE)
+#write.csv(data_shape_LLaMA3, "data_shape_LLaMA3.csv", row.names = FALSE)
 
 #### Factor analysis to examine structural validity 
 
@@ -2060,59 +2060,59 @@ lavaan::summary(fit.shape_GPT3.5.ope, standardized = TRUE, fit = TRUE)
 # If the model fit of GPT-based responses is as good as human responses, then it can serve as one piece of evidence supporting the notion that
 
 mod.fit <- t(data.frame(
-  hon.honest = fitMeasures(fit.honest.hon, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  hon.faking = fitMeasures(fit.faking.hon, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  hon.persona_GPT3.5 = fitMeasures(fit.persona_GPT3.5.hon, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  hon.shape_GPT3.5 = fitMeasures(fit.shape_GPT3.5.hon, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  hon.persona_GPT4 = fitMeasures(fit.persona_GPT4.hon, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  hon.shape_GPT4 = fitMeasures(fit.shape_GPT4.hon, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  hon.persona_LLaMA3 = fitMeasures(fit.persona_LLaMA3.hon, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  hon.shape_LLaMA3 = fitMeasures(fit.shape_LLaMA3.hon, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  hon.honest = fitMeasures(fit.honest.hon, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  hon.faking = fitMeasures(fit.faking.hon, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  hon.persona_GPT3.5 = fitMeasures(fit.persona_GPT3.5.hon, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  hon.shape_GPT3.5 = fitMeasures(fit.shape_GPT3.5.hon, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  hon.persona_GPT4 = fitMeasures(fit.persona_GPT4.hon, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  hon.shape_GPT4 = fitMeasures(fit.shape_GPT4.hon, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  hon.persona_LLaMA3 = fitMeasures(fit.persona_LLaMA3.hon, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  hon.shape_LLaMA3 = fitMeasures(fit.shape_LLaMA3.hon, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
   
-  emo.honest = fitMeasures(fit.honest.emo, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  emo.faking = fitMeasures(fit.faking.emo, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  emo.persona_GPT3.5 = fitMeasures(fit.persona_GPT3.5.emo, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  emo.shape_GPT3.5 = fitMeasures(fit.shape_GPT3.5.emo, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  emo.persona_GPT4 = fitMeasures(fit.persona_GPT4.emo, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  emo.shape_GPT4 = fitMeasures(fit.shape_GPT4.emo, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  emo.persona_LLaMA3 = fitMeasures(fit.persona_LLaMA3.emo, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  emo.shape_LLaMA3 = fitMeasures(fit.shape_LLaMA3.emo, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  emo.honest = fitMeasures(fit.honest.emo, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  emo.faking = fitMeasures(fit.faking.emo, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  emo.persona_GPT3.5 = fitMeasures(fit.persona_GPT3.5.emo, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  emo.shape_GPT3.5 = fitMeasures(fit.shape_GPT3.5.emo, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  emo.persona_GPT4 = fitMeasures(fit.persona_GPT4.emo, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  emo.shape_GPT4 = fitMeasures(fit.shape_GPT4.emo, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  emo.persona_LLaMA3 = fitMeasures(fit.persona_LLaMA3.emo, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  emo.shape_LLaMA3 = fitMeasures(fit.shape_LLaMA3.emo, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
   
-  ext.honest = fitMeasures(fit.honest.ext, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  ext.faking = fitMeasures(fit.faking.ext, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  ext.persona_GPT3.5 = fitMeasures(fit.persona_GPT3.5.ext, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  ext.shape_GPT3.5 = fitMeasures(fit.shape_GPT3.5.ext, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  ext.persona_GPT4 = fitMeasures(fit.persona_GPT4.ext, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  ext.shape_GPT4 = fitMeasures(fit.shape_GPT4.ext, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  ext.persona_LLaMA3 = fitMeasures(fit.persona_LLaMA3.ext, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  ext.shape_LLaMA3 = fitMeasures(fit.shape_LLaMA3.ext, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  ext.honest = fitMeasures(fit.honest.ext, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  ext.faking = fitMeasures(fit.faking.ext, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  ext.persona_GPT3.5 = fitMeasures(fit.persona_GPT3.5.ext, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  ext.shape_GPT3.5 = fitMeasures(fit.shape_GPT3.5.ext, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  ext.persona_GPT4 = fitMeasures(fit.persona_GPT4.ext, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  ext.shape_GPT4 = fitMeasures(fit.shape_GPT4.ext, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  ext.persona_LLaMA3 = fitMeasures(fit.persona_LLaMA3.ext, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  ext.shape_LLaMA3 = fitMeasures(fit.shape_LLaMA3.ext, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
   
-  agr.honest = fitMeasures(fit.honest.agr, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  agr.faking = fitMeasures(fit.faking.agr, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  agr.persona_GPT3.5 = fitMeasures(fit.persona_GPT3.5.agr, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  agr.shape_GPT3.5 = fitMeasures(fit.shape_GPT3.5.agr, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  agr.persona_GPT4 = fitMeasures(fit.persona_GPT4.agr, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  agr.shape_GPT4 = fitMeasures(fit.shape_GPT4.agr, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  agr.persona_LLaMA3 = fitMeasures(fit.persona_LLaMA3.agr, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  agr.shape_LLaMA3 = fitMeasures(fit.shape_LLaMA3.agr, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  agr.honest = fitMeasures(fit.honest.agr, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  agr.faking = fitMeasures(fit.faking.agr, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  agr.persona_GPT3.5 = fitMeasures(fit.persona_GPT3.5.agr, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  agr.shape_GPT3.5 = fitMeasures(fit.shape_GPT3.5.agr, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  agr.persona_GPT4 = fitMeasures(fit.persona_GPT4.agr, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  agr.shape_GPT4 = fitMeasures(fit.shape_GPT4.agr, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  agr.persona_LLaMA3 = fitMeasures(fit.persona_LLaMA3.agr, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  agr.shape_LLaMA3 = fitMeasures(fit.shape_LLaMA3.agr, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
   
-  con.honest = fitMeasures(fit.honest.con, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  con.faking = fitMeasures(fit.faking.con, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  con.persona_GPT3.5 = fitMeasures(fit.persona_GPT3.5.con, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  con.shape_GPT3.5 = fitMeasures(fit.shape_GPT3.5.con, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  con.persona_GPT4 = fitMeasures(fit.persona_GPT4.con, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  con.shape_GPT4 = fitMeasures(fit.shape_GPT4.con, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  con.persona_LLaMA3 = fitMeasures(fit.persona_LLaMA3.con, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  con.shape_LLaMA3 = fitMeasures(fit.shape_LLaMA3.con, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  con.honest = fitMeasures(fit.honest.con, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  con.faking = fitMeasures(fit.faking.con, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  con.persona_GPT3.5 = fitMeasures(fit.persona_GPT3.5.con, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  con.shape_GPT3.5 = fitMeasures(fit.shape_GPT3.5.con, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  con.persona_GPT4 = fitMeasures(fit.persona_GPT4.con, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  con.shape_GPT4 = fitMeasures(fit.shape_GPT4.con, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  con.persona_LLaMA3 = fitMeasures(fit.persona_LLaMA3.con, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  con.shape_LLaMA3 = fitMeasures(fit.shape_LLaMA3.con, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
   
-  ope.honest = fitMeasures(fit.honest.ope, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  ope.faking = fitMeasures(fit.faking.ope, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  ope.persona_GPT3.5 = fitMeasures(fit.persona_GPT3.5.ope, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  ope.shape_GPT3.5 = fitMeasures(fit.shape_GPT3.5.ope, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  ope.persona_GPT4 = fitMeasures(fit.persona_GPT4.ope, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  ope.shape_GPT4 = fitMeasures(fit.shape_GPT4.ope, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  ope.persona_LLaMA3 = fitMeasures(fit.persona_LLaMA3.ope, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
-  ope.shape_LLaMA3 = fitMeasures(fit.shape_LLaMA3.ope, fit.measures = c("chisq.scaled", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean"))
+  ope.honest = fitMeasures(fit.honest.ope, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  ope.faking = fitMeasures(fit.faking.ope, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  ope.persona_GPT3.5 = fitMeasures(fit.persona_GPT3.5.ope, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  ope.shape_GPT3.5 = fitMeasures(fit.shape_GPT3.5.ope, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  ope.persona_GPT4 = fitMeasures(fit.persona_GPT4.ope, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  ope.shape_GPT4 = fitMeasures(fit.shape_GPT4.ope, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  ope.persona_LLaMA3 = fitMeasures(fit.persona_LLaMA3.ope, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean")),
+  ope.shape_LLaMA3 = fitMeasures(fit.shape_LLaMA3.ope, fit.measures = c("chisq", "df", "cfi", "tli", "rmsea", "srmr_bentler_nomean"))
 ))
 
 write.table(mod.fit, "mod.fit.csv", sep = ",")
@@ -2243,6 +2243,428 @@ correlations <- data.frame(
 )
 
 write.table(correlations, "correlations.csv", sep = ",")
+
+### tcc
+# hon
+loadings_honest_hon <- lavInspect(fit.honest.hon, "std")$lambda
+loadings_persona_GPT3.5_hon <- lavInspect(fit.persona_GPT3.5.hon, "std")$lambda
+loadings_shape_GPT3.5_hon <- lavInspect(fit.shape_GPT3.5.hon, "std")$lambda
+loadings_persona_GPT4_hon <- lavInspect(fit.persona_GPT4.hon, "std")$lambda
+loadings_shape_GPT4_hon <- lavInspect(fit.shape_GPT4.hon, "std")$lambda
+loadings_persona_LLaMA3_hon <- lavInspect(fit.persona_LLaMA3.hon, "std")$lambda
+loadings_shape_LLaMA3_hon <- lavInspect(fit.shape_LLaMA3.hon, "std")$lambda
+
+tcc_normal_persona_GPT3.5 <- factor.congruence(loadings_honest_hon, loadings_persona_GPT3.5_hon)
+tcc_normal_shape_GPT3.5 <- factor.congruence(loadings_honest_hon, loadings_shape_GPT3.5_hon)
+tcc_normal_persona_GPT4 <- factor.congruence(loadings_honest_hon, loadings_persona_GPT4_hon)
+tcc_normal_shape_GPT4 <- factor.congruence(loadings_honest_hon, loadings_shape_GPT4_hon)
+tcc_normal_persona_LLaMA3 <- factor.congruence(loadings_honest_hon, loadings_persona_LLaMA3_hon)
+tcc_normal_shape_LLaMA3 <- factor.congruence(loadings_honest_hon, loadings_shape_LLaMA3_hon)
+
+tcc_normal_persona_GPT3.5
+tcc_normal_shape_GPT3.5
+tcc_normal_persona_GPT4
+tcc_normal_shape_GPT4
+tcc_normal_persona_LLaMA3
+tcc_normal_shape_LLaMA3
+
+# emo
+loadings_honest_emo <- lavInspect(fit.honest.emo, "std")$lambda
+loadings_persona_GPT3.5_emo <- lavInspect(fit.persona_GPT3.5.emo, "std")$lambda
+loadings_shape_GPT3.5_emo <- lavInspect(fit.shape_GPT3.5.emo, "std")$lambda
+loadings_persona_GPT4_emo <- lavInspect(fit.persona_GPT4.emo, "std")$lambda
+loadings_shape_GPT4_emo <- lavInspect(fit.shape_GPT4.emo, "std")$lambda
+loadings_persona_LLaMA3_emo <- lavInspect(fit.persona_LLaMA3.emo, "std")$lambda
+loadings_shape_LLaMA3_emo <- lavInspect(fit.shape_LLaMA3.emo, "std")$lambda
+
+tcc_normal_persona_GPT3.5 <- factor.congruence(loadings_honest_emo, loadings_persona_GPT3.5_emo)
+tcc_normal_shape_GPT3.5 <- factor.congruence(loadings_honest_emo, loadings_shape_GPT3.5_emo)
+tcc_normal_persona_GPT4 <- factor.congruence(loadings_honest_emo, loadings_persona_GPT4_emo)
+tcc_normal_shape_GPT4 <- factor.congruence(loadings_honest_emo, loadings_shape_GPT4_emo)
+tcc_normal_persona_LLaMA3 <- factor.congruence(loadings_honest_emo, loadings_persona_LLaMA3_emo)
+tcc_normal_shape_LLaMA3 <- factor.congruence(loadings_honest_emo, loadings_shape_LLaMA3_emo)
+
+tcc_normal_persona_GPT3.5
+tcc_normal_shape_GPT3.5
+tcc_normal_persona_GPT4
+tcc_normal_shape_GPT4
+tcc_normal_persona_LLaMA3
+tcc_normal_shape_LLaMA3
+
+# ext
+loadings_honest_ext <- lavInspect(fit.honest.ext, "std")$lambda
+loadings_persona_GPT3.5_ext <- lavInspect(fit.persona_GPT3.5.ext, "std")$lambda
+loadings_shape_GPT3.5_ext <- lavInspect(fit.shape_GPT3.5.ext, "std")$lambda
+loadings_persona_GPT4_ext <- lavInspect(fit.persona_GPT4.ext, "std")$lambda
+loadings_shape_GPT4_ext <- lavInspect(fit.shape_GPT4.ext, "std")$lambda
+loadings_persona_LLaMA3_ext <- lavInspect(fit.persona_LLaMA3.ext, "std")$lambda
+loadings_shape_LLaMA3_ext <- lavInspect(fit.shape_LLaMA3.ext, "std")$lambda
+
+tcc_normal_persona_GPT3.5 <- factor.congruence(loadings_honest_ext, loadings_persona_GPT3.5_ext)
+tcc_normal_shape_GPT3.5 <- factor.congruence(loadings_honest_ext, loadings_shape_GPT3.5_ext)
+tcc_normal_persona_GPT4 <- factor.congruence(loadings_honest_ext, loadings_persona_GPT4_ext)
+tcc_normal_shape_GPT4 <- factor.congruence(loadings_honest_ext, loadings_shape_GPT4_ext)
+tcc_normal_persona_LLaMA3 <- factor.congruence(loadings_honest_ext, loadings_persona_LLaMA3_ext)
+tcc_normal_shape_LLaMA3 <- factor.congruence(loadings_honest_ext, loadings_shape_LLaMA3_ext)
+
+tcc_normal_persona_GPT3.5
+tcc_normal_shape_GPT3.5
+tcc_normal_persona_GPT4
+tcc_normal_shape_GPT4
+tcc_normal_persona_LLaMA3
+tcc_normal_shape_LLaMA3
+
+
+# agr
+loadings_honest_agr <- lavInspect(fit.honest.agr, "std")$lambda
+loadings_persona_GPT3.5_agr <- lavInspect(fit.persona_GPT3.5.agr, "std")$lambda
+loadings_shape_GPT3.5_agr <- lavInspect(fit.shape_GPT3.5.agr, "std")$lambda
+loadings_persona_GPT4_agr <- lavInspect(fit.persona_GPT4.agr, "std")$lambda
+loadings_shape_GPT4_agr <- lavInspect(fit.shape_GPT4.agr, "std")$lambda
+loadings_persona_LLaMA3_agr <- lavInspect(fit.persona_LLaMA3.agr, "std")$lambda
+loadings_shape_LLaMA3_agr <- lavInspect(fit.shape_LLaMA3.agr, "std")$lambda
+
+tcc_normal_persona_GPT3.5 <- factor.congruence(loadings_honest_agr, loadings_persona_GPT3.5_agr)
+tcc_normal_shape_GPT3.5 <- factor.congruence(loadings_honest_agr, loadings_shape_GPT3.5_agr)
+tcc_normal_persona_GPT4 <- factor.congruence(loadings_honest_agr, loadings_persona_GPT4_agr)
+tcc_normal_shape_GPT4 <- factor.congruence(loadings_honest_agr, loadings_shape_GPT4_agr)
+tcc_normal_persona_LLaMA3 <- factor.congruence(loadings_honest_agr, loadings_persona_LLaMA3_agr)
+tcc_normal_shape_LLaMA3 <- factor.congruence(loadings_honest_agr, loadings_shape_LLaMA3_agr)
+
+tcc_normal_persona_GPT3.5
+tcc_normal_shape_GPT3.5
+tcc_normal_persona_GPT4
+tcc_normal_shape_GPT4
+tcc_normal_persona_LLaMA3
+tcc_normal_shape_LLaMA3
+
+
+# con
+loadings_honest_con <- lavInspect(fit.honest.con, "std")$lambda
+loadings_persona_GPT3.5_con <- lavInspect(fit.persona_GPT3.5.con, "std")$lambda
+loadings_shape_GPT3.5_con <- lavInspect(fit.shape_GPT3.5.con, "std")$lambda
+loadings_persona_GPT4_con <- lavInspect(fit.persona_GPT4.con, "std")$lambda
+loadings_shape_GPT4_con <- lavInspect(fit.shape_GPT4.con, "std")$lambda
+loadings_persona_LLaMA3_con <- lavInspect(fit.persona_LLaMA3.con, "std")$lambda
+loadings_shape_LLaMA3_con <- lavInspect(fit.shape_LLaMA3.con, "std")$lambda
+
+tcc_normal_persona_GPT3.5 <- factor.congruence(loadings_honest_con, loadings_persona_GPT3.5_con)
+tcc_normal_shape_GPT3.5 <- factor.congruence(loadings_honest_con, loadings_shape_GPT3.5_con)
+tcc_normal_persona_GPT4 <- factor.congruence(loadings_honest_con, loadings_persona_GPT4_con)
+tcc_normal_shape_GPT4 <- factor.congruence(loadings_honest_con, loadings_shape_GPT4_con)
+tcc_normal_persona_LLaMA3 <- factor.congruence(loadings_honest_con, loadings_persona_LLaMA3_con)
+tcc_normal_shape_LLaMA3 <- factor.congruence(loadings_honest_con, loadings_shape_LLaMA3_con)
+
+tcc_normal_persona_GPT3.5
+tcc_normal_shape_GPT3.5
+tcc_normal_persona_GPT4
+tcc_normal_shape_GPT4
+tcc_normal_persona_LLaMA3
+tcc_normal_shape_LLaMA3
+
+
+# ope
+loadings_honest_ope <- lavInspect(fit.honest.ope, "std")$lambda
+loadings_persona_GPT3.5_ope <- lavInspect(fit.persona_GPT3.5.ope, "std")$lambda
+loadings_shape_GPT3.5_ope <- lavInspect(fit.shape_GPT3.5.ope, "std")$lambda
+loadings_persona_GPT4_ope <- lavInspect(fit.persona_GPT4.ope, "std")$lambda
+loadings_shape_GPT4_ope <- lavInspect(fit.shape_GPT4.ope, "std")$lambda
+loadings_persona_LLaMA3_ope <- lavInspect(fit.persona_LLaMA3.ope, "std")$lambda
+loadings_shape_LLaMA3_ope <- lavInspect(fit.shape_LLaMA3.ope, "std")$lambda
+
+tcc_normal_persona_GPT3.5 <- factor.congruence(loadings_honest_ope, loadings_persona_GPT3.5_ope)
+tcc_normal_shape_GPT3.5 <- factor.congruence(loadings_honest_ope, loadings_shape_GPT3.5_ope)
+tcc_normal_persona_GPT4 <- factor.congruence(loadings_honest_ope, loadings_persona_GPT4_ope)
+tcc_normal_shape_GPT4 <- factor.congruence(loadings_honest_ope, loadings_shape_GPT4_ope)
+tcc_normal_persona_LLaMA3 <- factor.congruence(loadings_honest_ope, loadings_persona_LLaMA3_ope)
+tcc_normal_shape_LLaMA3 <- factor.congruence(loadings_honest_ope, loadings_shape_LLaMA3_ope)
+
+tcc_normal_persona_GPT3.5
+tcc_normal_shape_GPT3.5
+tcc_normal_persona_GPT4
+tcc_normal_shape_GPT4
+tcc_normal_persona_LLaMA3
+tcc_normal_shape_LLaMA3
+
+
+
+### six factor model
+
+data_honest$Sincerity <- calculate_dimension_score(data_honest, Sincerity) 
+data_honest$Fairness <- calculate_dimension_score(data_honest, Fairness)
+data_honest$Greed_avoidance <- calculate_dimension_score(data_honest, Greed_avoidance)
+data_honest$Modesty <- calculate_dimension_score(data_honest, Modesty)
+data_honest$Fearfulness <- calculate_dimension_score(data_honest, Fearfulness)
+data_honest$Anxiety <- calculate_dimension_score(data_honest, Anxiety)
+data_honest$Dependence <- calculate_dimension_score(data_honest, Dependence)
+data_honest$Sentimentality <- calculate_dimension_score(data_honest, Sentimentality)
+data_honest$Social_self_esteem <- calculate_dimension_score(data_honest, Social_self_esteem)
+data_honest$Social_boldness <- calculate_dimension_score(data_honest, Social_boldness)
+data_honest$Sociability <- calculate_dimension_score(data_honest, Sociability)
+data_honest$Liveliness <- calculate_dimension_score(data_honest, Liveliness)
+data_honest$Forgiveness <- calculate_dimension_score(data_honest, Forgiveness)
+data_honest$Gentleness <- calculate_dimension_score(data_honest, Gentleness)
+data_honest$Flexibility <- calculate_dimension_score(data_honest, Flexibility)
+data_honest$Patience <- calculate_dimension_score(data_honest, Patience)
+data_honest$Organization <- calculate_dimension_score(data_honest, Organization)
+data_honest$Diligence <- calculate_dimension_score(data_honest, Diligence)
+data_honest$Perfectionism <- calculate_dimension_score(data_honest, Perfectionism)
+data_honest$Prudence <- calculate_dimension_score(data_honest, Prudence)
+data_honest$Aesthetic_appreciation <- calculate_dimension_score(data_honest, Aesthetic_appreciation)
+data_honest$Inquisitiveness <- calculate_dimension_score(data_honest, Inquisitiveness)
+data_honest$Creativity <- calculate_dimension_score(data_honest, Creativity)
+data_honest$Unconventionality <- calculate_dimension_score(data_honest, Unconventionality)
+data_honest$Altruism <- calculate_dimension_score(data_honest, Altruism)
+
+
+data_persona_GPT3.5$Sincerity <- calculate_dimension_score(data_persona_GPT3.5, Sincerity) 
+data_persona_GPT3.5$Fairness <- calculate_dimension_score(data_persona_GPT3.5, Fairness)
+data_persona_GPT3.5$Greed_avoidance <- calculate_dimension_score(data_persona_GPT3.5, Greed_avoidance)
+data_persona_GPT3.5$Modesty <- calculate_dimension_score(data_persona_GPT3.5, Modesty)
+data_persona_GPT3.5$Fearfulness <- calculate_dimension_score(data_persona_GPT3.5, Fearfulness)
+data_persona_GPT3.5$Anxiety <- calculate_dimension_score(data_persona_GPT3.5, Anxiety)
+data_persona_GPT3.5$Dependence <- calculate_dimension_score(data_persona_GPT3.5, Dependence)
+data_persona_GPT3.5$Sentimentality <- calculate_dimension_score(data_persona_GPT3.5, Sentimentality)
+data_persona_GPT3.5$Social_self_esteem <- calculate_dimension_score(data_persona_GPT3.5, Social_self_esteem)
+data_persona_GPT3.5$Social_boldness <- calculate_dimension_score(data_persona_GPT3.5, Social_boldness)
+data_persona_GPT3.5$Sociability <- calculate_dimension_score(data_persona_GPT3.5, Sociability)
+data_persona_GPT3.5$Liveliness <- calculate_dimension_score(data_persona_GPT3.5, Liveliness)
+data_persona_GPT3.5$Forgiveness <- calculate_dimension_score(data_persona_GPT3.5, Forgiveness)
+data_persona_GPT3.5$Gentleness <- calculate_dimension_score(data_persona_GPT3.5, Gentleness)
+data_persona_GPT3.5$Flexibility <- calculate_dimension_score(data_persona_GPT3.5, Flexibility)
+data_persona_GPT3.5$Patience <- calculate_dimension_score(data_persona_GPT3.5, Patience)
+data_persona_GPT3.5$Organization <- calculate_dimension_score(data_persona_GPT3.5, Organization)
+data_persona_GPT3.5$Diligence <- calculate_dimension_score(data_persona_GPT3.5, Diligence)
+data_persona_GPT3.5$Perfectionism <- calculate_dimension_score(data_persona_GPT3.5, Perfectionism)
+data_persona_GPT3.5$Prudence <- calculate_dimension_score(data_persona_GPT3.5, Prudence)
+data_persona_GPT3.5$Aesthetic_appreciation <- calculate_dimension_score(data_persona_GPT3.5, Aesthetic_appreciation)
+data_persona_GPT3.5$Inquisitiveness <- calculate_dimension_score(data_persona_GPT3.5, Inquisitiveness)
+data_persona_GPT3.5$Creativity <- calculate_dimension_score(data_persona_GPT3.5, Creativity)
+data_persona_GPT3.5$Unconventionality <- calculate_dimension_score(data_persona_GPT3.5, Unconventionality)
+data_persona_GPT3.5$Altruism <- calculate_dimension_score(data_persona_GPT3.5, Altruism)
+
+
+data_shape_GPT3.5$Sincerity <- calculate_dimension_score(data_shape_GPT3.5, Sincerity) 
+data_shape_GPT3.5$Fairness <- calculate_dimension_score(data_shape_GPT3.5, Fairness)
+data_shape_GPT3.5$Greed_avoidance <- calculate_dimension_score(data_shape_GPT3.5, Greed_avoidance)
+data_shape_GPT3.5$Modesty <- calculate_dimension_score(data_shape_GPT3.5, Modesty)
+data_shape_GPT3.5$Fearfulness <- calculate_dimension_score(data_shape_GPT3.5, Fearfulness)
+data_shape_GPT3.5$Anxiety <- calculate_dimension_score(data_shape_GPT3.5, Anxiety)
+data_shape_GPT3.5$Dependence <- calculate_dimension_score(data_shape_GPT3.5, Dependence)
+data_shape_GPT3.5$Sentimentality <- calculate_dimension_score(data_shape_GPT3.5, Sentimentality)
+data_shape_GPT3.5$Social_self_esteem <- calculate_dimension_score(data_shape_GPT3.5, Social_self_esteem)
+data_shape_GPT3.5$Social_boldness <- calculate_dimension_score(data_shape_GPT3.5, Social_boldness)
+data_shape_GPT3.5$Sociability <- calculate_dimension_score(data_shape_GPT3.5, Sociability)
+data_shape_GPT3.5$Liveliness <- calculate_dimension_score(data_shape_GPT3.5, Liveliness)
+data_shape_GPT3.5$Forgiveness <- calculate_dimension_score(data_shape_GPT3.5, Forgiveness)
+data_shape_GPT3.5$Gentleness <- calculate_dimension_score(data_shape_GPT3.5, Gentleness)
+data_shape_GPT3.5$Flexibility <- calculate_dimension_score(data_shape_GPT3.5, Flexibility)
+data_shape_GPT3.5$Patience <- calculate_dimension_score(data_shape_GPT3.5, Patience)
+data_shape_GPT3.5$Organization <- calculate_dimension_score(data_shape_GPT3.5, Organization)
+data_shape_GPT3.5$Diligence <- calculate_dimension_score(data_shape_GPT3.5, Diligence)
+data_shape_GPT3.5$Perfectionism <- calculate_dimension_score(data_shape_GPT3.5, Perfectionism)
+data_shape_GPT3.5$Prudence <- calculate_dimension_score(data_shape_GPT3.5, Prudence)
+data_shape_GPT3.5$Aesthetic_appreciation <- calculate_dimension_score(data_shape_GPT3.5, Aesthetic_appreciation)
+data_shape_GPT3.5$Inquisitiveness <- calculate_dimension_score(data_shape_GPT3.5, Inquisitiveness)
+data_shape_GPT3.5$Creativity <- calculate_dimension_score(data_shape_GPT3.5, Creativity)
+data_shape_GPT3.5$Unconventionality <- calculate_dimension_score(data_shape_GPT3.5, Unconventionality)
+data_shape_GPT3.5$Altruism <- calculate_dimension_score(data_shape_GPT3.5, Altruism)
+
+
+data_persona_GPT4$Sincerity <- calculate_dimension_score(data_persona_GPT4, Sincerity) 
+data_persona_GPT4$Fairness <- calculate_dimension_score(data_persona_GPT4, Fairness)
+data_persona_GPT4$Greed_avoidance <- calculate_dimension_score(data_persona_GPT4, Greed_avoidance)
+data_persona_GPT4$Modesty <- calculate_dimension_score(data_persona_GPT4, Modesty)
+data_persona_GPT4$Fearfulness <- calculate_dimension_score(data_persona_GPT4, Fearfulness)
+data_persona_GPT4$Anxiety <- calculate_dimension_score(data_persona_GPT4, Anxiety)
+data_persona_GPT4$Dependence <- calculate_dimension_score(data_persona_GPT4, Dependence)
+data_persona_GPT4$Sentimentality <- calculate_dimension_score(data_persona_GPT4, Sentimentality)
+data_persona_GPT4$Social_self_esteem <- calculate_dimension_score(data_persona_GPT4, Social_self_esteem)
+data_persona_GPT4$Social_boldness <- calculate_dimension_score(data_persona_GPT4, Social_boldness)
+data_persona_GPT4$Sociability <- calculate_dimension_score(data_persona_GPT4, Sociability)
+data_persona_GPT4$Liveliness <- calculate_dimension_score(data_persona_GPT4, Liveliness)
+data_persona_GPT4$Forgiveness <- calculate_dimension_score(data_persona_GPT4, Forgiveness)
+data_persona_GPT4$Gentleness <- calculate_dimension_score(data_persona_GPT4, Gentleness)
+data_persona_GPT4$Flexibility <- calculate_dimension_score(data_persona_GPT4, Flexibility)
+data_persona_GPT4$Patience <- calculate_dimension_score(data_persona_GPT4, Patience)
+data_persona_GPT4$Organization <- calculate_dimension_score(data_persona_GPT4, Organization)
+data_persona_GPT4$Diligence <- calculate_dimension_score(data_persona_GPT4, Diligence)
+data_persona_GPT4$Perfectionism <- calculate_dimension_score(data_persona_GPT4, Perfectionism)
+data_persona_GPT4$Prudence <- calculate_dimension_score(data_persona_GPT4, Prudence)
+data_persona_GPT4$Aesthetic_appreciation <- calculate_dimension_score(data_persona_GPT4, Aesthetic_appreciation)
+data_persona_GPT4$Inquisitiveness <- calculate_dimension_score(data_persona_GPT4, Inquisitiveness)
+data_persona_GPT4$Creativity <- calculate_dimension_score(data_persona_GPT4, Creativity)
+data_persona_GPT4$Unconventionality <- calculate_dimension_score(data_persona_GPT4, Unconventionality)
+data_persona_GPT4$Altruism <- calculate_dimension_score(data_persona_GPT4, Altruism)
+
+
+data_shape_GPT4$Sincerity <- calculate_dimension_score(data_shape_GPT4, Sincerity) 
+data_shape_GPT4$Fairness <- calculate_dimension_score(data_shape_GPT4, Fairness)
+data_shape_GPT4$Greed_avoidance <- calculate_dimension_score(data_shape_GPT4, Greed_avoidance)
+data_shape_GPT4$Modesty <- calculate_dimension_score(data_shape_GPT4, Modesty)
+data_shape_GPT4$Fearfulness <- calculate_dimension_score(data_shape_GPT4, Fearfulness)
+data_shape_GPT4$Anxiety <- calculate_dimension_score(data_shape_GPT4, Anxiety)
+data_shape_GPT4$Dependence <- calculate_dimension_score(data_shape_GPT4, Dependence)
+data_shape_GPT4$Sentimentality <- calculate_dimension_score(data_shape_GPT4, Sentimentality)
+data_shape_GPT4$Social_self_esteem <- calculate_dimension_score(data_shape_GPT4, Social_self_esteem)
+data_shape_GPT4$Social_boldness <- calculate_dimension_score(data_shape_GPT4, Social_boldness)
+data_shape_GPT4$Sociability <- calculate_dimension_score(data_shape_GPT4, Sociability)
+data_shape_GPT4$Liveliness <- calculate_dimension_score(data_shape_GPT4, Liveliness)
+data_shape_GPT4$Forgiveness <- calculate_dimension_score(data_shape_GPT4, Forgiveness)
+data_shape_GPT4$Gentleness <- calculate_dimension_score(data_shape_GPT4, Gentleness)
+data_shape_GPT4$Flexibility <- calculate_dimension_score(data_shape_GPT4, Flexibility)
+data_shape_GPT4$Patience <- calculate_dimension_score(data_shape_GPT4, Patience)
+data_shape_GPT4$Organization <- calculate_dimension_score(data_shape_GPT4, Organization)
+data_shape_GPT4$Diligence <- calculate_dimension_score(data_shape_GPT4, Diligence)
+data_shape_GPT4$Perfectionism <- calculate_dimension_score(data_shape_GPT4, Perfectionism)
+data_shape_GPT4$Prudence <- calculate_dimension_score(data_shape_GPT4, Prudence)
+data_shape_GPT4$Aesthetic_appreciation <- calculate_dimension_score(data_shape_GPT4, Aesthetic_appreciation)
+data_shape_GPT4$Inquisitiveness <- calculate_dimension_score(data_shape_GPT4, Inquisitiveness)
+data_shape_GPT4$Creativity <- calculate_dimension_score(data_shape_GPT4, Creativity)
+data_shape_GPT4$Unconventionality <- calculate_dimension_score(data_shape_GPT4, Unconventionality)
+data_shape_GPT4$Altruism <- calculate_dimension_score(data_shape_GPT4, Altruism)
+
+
+data_persona_LLaMA3$Sincerity <- calculate_dimension_score(data_persona_LLaMA3, Sincerity) 
+data_persona_LLaMA3$Fairness <- calculate_dimension_score(data_persona_LLaMA3, Fairness)
+data_persona_LLaMA3$Greed_avoidance <- calculate_dimension_score(data_persona_LLaMA3, Greed_avoidance)
+data_persona_LLaMA3$Modesty <- calculate_dimension_score(data_persona_LLaMA3, Modesty)
+data_persona_LLaMA3$Fearfulness <- calculate_dimension_score(data_persona_LLaMA3, Fearfulness)
+data_persona_LLaMA3$Anxiety <- calculate_dimension_score(data_persona_LLaMA3, Anxiety)
+data_persona_LLaMA3$Dependence <- calculate_dimension_score(data_persona_LLaMA3, Dependence)
+data_persona_LLaMA3$Sentimentality <- calculate_dimension_score(data_persona_LLaMA3, Sentimentality)
+data_persona_LLaMA3$Social_self_esteem <- calculate_dimension_score(data_persona_LLaMA3, Social_self_esteem)
+data_persona_LLaMA3$Social_boldness <- calculate_dimension_score(data_persona_LLaMA3, Social_boldness)
+data_persona_LLaMA3$Sociability <- calculate_dimension_score(data_persona_LLaMA3, Sociability)
+data_persona_LLaMA3$Liveliness <- calculate_dimension_score(data_persona_LLaMA3, Liveliness)
+data_persona_LLaMA3$Forgiveness <- calculate_dimension_score(data_persona_LLaMA3, Forgiveness)
+data_persona_LLaMA3$Gentleness <- calculate_dimension_score(data_persona_LLaMA3, Gentleness)
+data_persona_LLaMA3$Flexibility <- calculate_dimension_score(data_persona_LLaMA3, Flexibility)
+data_persona_LLaMA3$Patience <- calculate_dimension_score(data_persona_LLaMA3, Patience)
+data_persona_LLaMA3$Organization <- calculate_dimension_score(data_persona_LLaMA3, Organization)
+data_persona_LLaMA3$Diligence <- calculate_dimension_score(data_persona_LLaMA3, Diligence)
+data_persona_LLaMA3$Perfectionism <- calculate_dimension_score(data_persona_LLaMA3, Perfectionism)
+data_persona_LLaMA3$Prudence <- calculate_dimension_score(data_persona_LLaMA3, Prudence)
+data_persona_LLaMA3$Aesthetic_appreciation <- calculate_dimension_score(data_persona_LLaMA3, Aesthetic_appreciation)
+data_persona_LLaMA3$Inquisitiveness <- calculate_dimension_score(data_persona_LLaMA3, Inquisitiveness)
+data_persona_LLaMA3$Creativity <- calculate_dimension_score(data_persona_LLaMA3, Creativity)
+data_persona_LLaMA3$Unconventionality <- calculate_dimension_score(data_persona_LLaMA3, Unconventionality)
+data_persona_LLaMA3$Altruism <- calculate_dimension_score(data_persona_LLaMA3, Altruism)
+
+
+data_shape_LLaMA3$Sincerity <- calculate_dimension_score(data_shape_LLaMA3, Sincerity) 
+data_shape_LLaMA3$Fairness <- calculate_dimension_score(data_shape_LLaMA3, Fairness)
+data_shape_LLaMA3$Greed_avoidance <- calculate_dimension_score(data_shape_LLaMA3, Greed_avoidance)
+data_shape_LLaMA3$Modesty <- calculate_dimension_score(data_shape_LLaMA3, Modesty)
+data_shape_LLaMA3$Fearfulness <- calculate_dimension_score(data_shape_LLaMA3, Fearfulness)
+data_shape_LLaMA3$Anxiety <- calculate_dimension_score(data_shape_LLaMA3, Anxiety)
+data_shape_LLaMA3$Dependence <- calculate_dimension_score(data_shape_LLaMA3, Dependence)
+data_shape_LLaMA3$Sentimentality <- calculate_dimension_score(data_shape_LLaMA3, Sentimentality)
+data_shape_LLaMA3$Social_self_esteem <- calculate_dimension_score(data_shape_LLaMA3, Social_self_esteem)
+data_shape_LLaMA3$Social_boldness <- calculate_dimension_score(data_shape_LLaMA3, Social_boldness)
+data_shape_LLaMA3$Sociability <- calculate_dimension_score(data_shape_LLaMA3, Sociability)
+data_shape_LLaMA3$Liveliness <- calculate_dimension_score(data_shape_LLaMA3, Liveliness)
+data_shape_LLaMA3$Forgiveness <- calculate_dimension_score(data_shape_LLaMA3, Forgiveness)
+data_shape_LLaMA3$Gentleness <- calculate_dimension_score(data_shape_LLaMA3, Gentleness)
+data_shape_LLaMA3$Flexibility <- calculate_dimension_score(data_shape_LLaMA3, Flexibility)
+data_shape_LLaMA3$Patience <- calculate_dimension_score(data_shape_LLaMA3, Patience)
+data_shape_LLaMA3$Organization <- calculate_dimension_score(data_shape_LLaMA3, Organization)
+data_shape_LLaMA3$Diligence <- calculate_dimension_score(data_shape_LLaMA3, Diligence)
+data_shape_LLaMA3$Perfectionism <- calculate_dimension_score(data_shape_LLaMA3, Perfectionism)
+data_shape_LLaMA3$Prudence <- calculate_dimension_score(data_shape_LLaMA3, Prudence)
+data_shape_LLaMA3$Aesthetic_appreciation <- calculate_dimension_score(data_shape_LLaMA3, Aesthetic_appreciation)
+data_shape_LLaMA3$Inquisitiveness <- calculate_dimension_score(data_shape_LLaMA3, Inquisitiveness)
+data_shape_LLaMA3$Creativity <- calculate_dimension_score(data_shape_LLaMA3, Creativity)
+data_shape_LLaMA3$Unconventionality <- calculate_dimension_score(data_shape_LLaMA3, Unconventionality)
+data_shape_LLaMA3$Altruism <- calculate_dimension_score(data_shape_LLaMA3, Altruism)
+
+
+mod.all <- "Honesty_humility =~ Sincerity+Fairness+Greed_avoidance+Modesty
+            Emotionality =~ Fearfulness+Anxiety+Dependence+Sentimentality
+            Extraversion =~ Social_self_esteem+Social_boldness+Sociability+Liveliness
+            Agreeableness  =~ Forgiveness+Gentleness+Flexibility+Patience
+            Conscientiousness =~ Organization+Diligence+Perfectionism+Prudence
+            Openness_to_experience =~ Aesthetic_appreciation+Inquisitiveness+Creativity+Unconventionality"
+
+
+fit.honest <- lavaan::sem(mod.all,data = data_honest,std.lv=T)
+fit.persona_GPT3.5 <- lavaan::sem(mod.all,data = data_persona_GPT3.5,std.lv=T)
+fit.shape_GPT3.5 <- lavaan::sem(mod.all,data = data_shape_GPT3.5,std.lv=T)
+# fit.persona_GPT4 <- lavaan::sem(mod.all,data = data_persona_GPT4,std.lv=T)
+fit.shape_GPT4 <- lavaan::sem(mod.all,data = data_shape_GPT4,std.lv=T)
+fit.persona_LLaMA3 <- lavaan::sem(mod.all,data = data_persona_LLaMA3,std.lv=T)
+fit.shape_LLaMA3 <- lavaan::sem(mod.all,data = data_shape_LLaMA3,std.lv=T)
+
+
+mod.fit.all <- t(data.frame(
+  honest = fitMeasures(fit.honest, fit.measures = c("chisq","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
+  persona_GPT3.5 = fitMeasures(fit.persona_GPT3.5, fit.measures = c("chisq","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
+  shape_GPT3.5 = fitMeasures(fit.shape_GPT3.5, fit.measures = c("chisq","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
+  #persona_GPT4 = fitMeasures(fit.persona_GPT4, fit.measures = c("chisq","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
+  shape_GPT4 = fitMeasures(fit.shape_GPT4, fit.measures = c("chisq","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
+  persona_LLaMA3 = fitMeasures(fit.persona_LLaMA3, fit.measures = c("chisq","df", "cfi", "tli", "rmsea","srmr_bentler_nomean")),
+  shape_LLaMA3 = fitMeasures(fit.shape_LLaMA3, fit.measures = c("chisq","df", "cfi", "tli", "rmsea","srmr_bentler_nomean"))
+))
+write.table(mod.fit.all,"mod.fit_all.csv",sep = ",")
+
+
+# Factor loadings 
+loadings <- data.frame(
+  honest = lavaan::standardizedsolution(fit.honest)[1:24,"est.std"],
+  persona_GPT3.5 = lavaan::standardizedsolution(fit.persona_GPT3.5)[1:24,"est.std"],
+  shape_GPT3.5 = lavaan::standardizedsolution(fit.shape_GPT3.5)[1:24,"est.std"],
+  #persona_GPT4 = lavaan::standardizedsolution(fit.persona_GPT4)[1:24,"est.std"],
+  shape_GPT4 = lavaan::standardizedsolution(fit.shape_GPT4)[1:24,"est.std"],
+  persona_LLaMA3 = lavaan::standardizedsolution(fit.persona_LLaMA3)[1:24,"est.std"],
+  shape_LLaMA3 = lavaan::standardizedsolution(fit.shape_LLaMA3)[1:24,"est.std"]
+)
+write.table(loadings,"loadings_all.csv",sep = ",")
+
+
+# Inter-factor correlations
+correlations <- data.frame(
+  honest = lavaan::standardizedsolution(fit.honest)[55:69,"est.std"],
+  persona_GPT3.5 = lavaan::standardizedsolution(fit.persona_GPT3.5)[55:69,"est.std"],
+  shape_GPT3.5 = lavaan::standardizedsolution(fit.shape_GPT3.5)[55:69,"est.std"],
+  #persona_GPT4 = lavaan::standardizedsolution(fit.persona_GPT4)[55:69,"est.std"],
+  shape_GPT4 = lavaan::standardizedsolution(fit.shape_GPT4)[55:69,"est.std"],
+  persona_LLaMA3 = lavaan::standardizedsolution(fit.persona_LLaMA3)[55:69,"est.std"],
+  shape_LLaMA3 = lavaan::standardizedsolution(fit.shape_LLaMA3)[55:69,"est.std"]
+)
+
+write.table(correlations,"correlations_all.csv",sep = ",")
+
+
+
+### tcc
+loadings_normal_human <- lavInspect(fit.honest, "std")$lambda
+loadings_persona_GPT3.5 <- lavInspect(fit.persona_GPT3.5, "std")$lambda
+loadings_shape_GPT3.5 <- lavInspect(fit.shape_GPT3.5, "std")$lambda
+#loadings_persona_GPT4 <- lavInspect(fit.persona_GPT4, "std")$lambda
+loadings_shape_GPT4 <- lavInspect(fit.shape_GPT4, "std")$lambda
+loadings_persona_LLaMA3 <- lavInspect(fit.persona_LLaMA3, "std")$lambda
+loadings_shape_LLaMA3 <- lavInspect(fit.shape_LLaMA3, "std")$lambda
+
+tcc_normal_persona_GPT3.5 <- factor.congruence(loadings_normal_human, loadings_persona_GPT3.5)
+tcc_normal_shape_GPT3.5 <- factor.congruence(loadings_normal_human, loadings_shape_GPT3.5)
+#tcc_normal_persona_GPT4 <- factor.congruence(loadings_normal_human, loadings_persona_GPT4)
+tcc_normal_shape_GPT4 <- factor.congruence(loadings_normal_human, loadings_shape_GPT4)
+tcc_normal_persona_LLaMA3 <- factor.congruence(loadings_normal_human, loadings_persona_LLaMA3)
+tcc_normal_shape_LLaMA3 <- factor.congruence(loadings_normal_human, loadings_shape_LLaMA3)
+
+tcc_normal_persona_GPT3.5
+tcc_normal_shape_GPT3.5
+#tcc_normal_persona_GPT4
+tcc_normal_shape_GPT4
+tcc_normal_persona_LLaMA3
+tcc_normal_shape_LLaMA3
+
+
+
+
+
+
+
 
 
 

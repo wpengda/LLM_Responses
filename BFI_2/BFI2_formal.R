@@ -2196,7 +2196,6 @@ write.table(correlations,"correlations_all.csv",sep = ",")
 
 
 ### tcc
-# ext
 loadings_normal_human <- lavInspect(fit.normal_human, "std")$lambda
 loadings_persona_GPT3.5 <- lavInspect(fit.persona_GPT3.5, "std")$lambda
 loadings_shape_GPT3.5 <- lavInspect(fit.shape_GPT3.5, "std")$lambda
