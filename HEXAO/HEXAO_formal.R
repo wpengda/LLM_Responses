@@ -118,8 +118,8 @@ table.item <- data.frame(
                          persona_LLaMA3.mean = item.results.persona_LLaMA3[,c("mean")],
                          shape_LLaMA3.mean = item.results.shape_LLaMA3[,c("mean")],
                          
-                         honest.mean = item.results.honest[,c("sd")],
-                         faking.mean = item.results.faking[,c("sd")],
+                         honest.sd = item.results.honest[,c("sd")],
+                         faking.sd = item.results.faking[,c("sd")],
                          persona_GPT3.5.sd = item.results.persona_GPT3.5[,c("sd")],
                          shape_GPT3.5.sd = item.results.shape_GPT3.5[,c("sd")],
                          persona_GPT4.sd = item.results.persona_GPT4[,c("sd")],
@@ -2661,11 +2661,122 @@ tcc_normal_shape_LLaMA3
 
 
 
+#######################social_desirability###################
+data_persona_GPT3.5 <- read.table("Data/GPT_3.5/persona_hexaco.csv", sep = ",", header = TRUE, quote = "\"", dec = ".", fill = TRUE)
+data_shape_GPT3.5 <- read.table("Data/GPT_3.5/shape_hexaco_300.csv", sep = ",", header = TRUE, quote = "\"", dec = ".", fill = TRUE)
+
+data_persona_GPT4 <- read.table("Data/GPT_4/persona_hexaco.csv", sep = ",", header = TRUE, quote = "\"", dec = ".", fill = TRUE)
+data_shape_GPT4 <- read.table("Data/GPT_4/shape_hexaco_300.csv", sep = ",", header = TRUE, quote = "\"", dec = ".", fill = TRUE)
+
+data_persona_LLaMA3 <- read.table("Data/LLaMA3/persona_hexaco_instruction.csv", sep = ",", header = TRUE, quote = "\"", dec = ".", fill = TRUE)
+data_shape_LLaMA3 <- read.table("Data/LLaMA3/shape_hexaco_instruction_300.csv", sep = ",", header = TRUE, quote = "\"", dec = ".", fill = TRUE)
+
+# four data to compare
+data_honest <- subset(read.csv("Data/reordered_hexaco_human.csv",sep = ","),sample!="industry")[,5:104]
+data_honest <- na.omit(data_honest)
+data_faking <- subset(read.csv("Data/reordered_hexaco_human.csv",sep = ","),sample=="industry")[,5:104]
+data_faking <- na.omit(data_faking)
+data_persona_GPT3.5 <- data_persona_GPT3.5[2: 101]
+data_shape_GPT3.5 <- data_shape_GPT3.5[2: 101]
+data_persona_GPT4 <- data_persona_GPT4[2: 101]
+data_shape_GPT4 <- data_shape_GPT4[2: 101]
+data_persona_LLaMA3 <- data_persona_LLaMA3[2: 101]
+data_shape_LLaMA3 <- data_shape_LLaMA3[2: 101]
+
+
+filter_data <- function(df) {
+  df[apply(df, 1, function(row) all(row >= 1 & row <= 5)), ]
+}
+data_honest <- filter_data(data_honest)
+data_faking <- filter_data(data_faking)
+data_persona_GPT3.5 <- filter_data(data_persona_GPT3.5)
+data_shape_GPT3.5 <- filter_data(data_shape_GPT3.5)
+data_persona_GPT4 <- filter_data(data_persona_GPT4)
+data_shape_GPT4 <- filter_data(data_shape_GPT4)
+data_persona_LLaMA3 <- filter_data(data_persona_LLaMA3)
+data_shape_LLaMA3 <- filter_data(data_shape_LLaMA3)
+
+
+
+item.results.honest <- describeBy(data_honest)
+item.results.faking <- describeBy(data_faking)
+item.results.persona_GPT3.5 <- describeBy(data_persona_GPT3.5)
+item.results.shape_GPT3.5 <- describeBy(data_shape_GPT3.5)
+item.results.persona_GPT4 <- describeBy(data_persona_GPT4)
+item.results.shape_GPT4 <- describeBy(data_shape_GPT4)
+item.results.persona_LLaMA3 <- describeBy(data_persona_LLaMA3)
+item.results.shape_LLaMA3 <- describeBy(data_shape_LLaMA3)
+
+table.item <- data.frame(
+  honest.mean = item.results.honest[,c("mean")],
+  faking.mean = item.results.faking[,c("mean")],
+  persona_GPT3.5.mean = item.results.persona_GPT3.5[,c("mean")],
+  shape_GPT3.5.mean = item.results.shape_GPT3.5[,c("mean")],
+  persona_GPT4.mean = item.results.persona_GPT4[,c("mean")],
+  shape_GPT4.mean = item.results.shape_GPT4[,c("mean")],
+  persona_LLaMA3.mean = item.results.persona_LLaMA3[,c("mean")],
+  shape_LLaMA3.mean = item.results.shape_LLaMA3[,c("mean")],
+  
+  honest.sd = item.results.honest[,c("sd")],
+  faking.sd = item.results.faking[,c("sd")],
+  persona_GPT3.5.sd = item.results.persona_GPT3.5[,c("sd")],
+  shape_GPT3.5.sd = item.results.shape_GPT3.5[,c("sd")],
+  persona_GPT4.sd = item.results.persona_GPT4[,c("sd")],
+  shape_GPT4.sd = item.results.shape_GPT4[,c("sd")],
+  persona_LLaMA3.sd = item.results.persona_LLaMA3[,c("sd")],
+  shape_LLaMA3.sd = item.results.shape_LLaMA3[,c("sd")]
+)
+
+# write in csv file
+write.table(table.item,"table.item.csv",sep = ",")
+
+
+data_social_desirability <- read.table("Data/HEXACO_social_desirability.csv",sep = ",",header = T)
+
+
+correlation_matrix <- cor(data_social_desirability[c("Mean_SocialD", 
+                                                     "MSDpersona_GPT3.5.mean", "MSDshape_GPT3.5.mean", 
+                                                     "MSDpersona_GPT4.mean", "MSDshape_GPT4.mean", 
+                                                     "MSDpersona_LLaMA3.mean", "MSDshape_LLaMA3.mean")])
+
+print(correlation_matrix)
+
+
+correlation_matrix <- cor(data_social_desirability[c("Mean_SocialD", "normal_human.mean",
+                                                     "persona_GPT3.5.mean", "shape_GPT3.5.mean", 
+                                                     "persona_GPT4.mean", "shape_GPT4.mean", 
+                                                     "persona_LLaMA3.mean", "shape_LLaMA3.mean")])
+
+print(correlation_matrix)
 
 
 
 
+dependent_vars <- c("normal_human.mean", "persona_GPT3.5.mean", "shape_GPT3.5.mean", 
+                    "persona_GPT4.mean", "shape_GPT4.mean", 
+                    "persona_LLaMA3.mean", "shape_LLaMA3.mean")
 
+for (var in dependent_vars) {
+  formula <- as.formula(paste(var, "~ Mean_SocialD"))
+  model <- lm(formula, data = data_social_desirability)
+  cat("Regression for", var, ":\n")
+  print(summary(model))
+  cat("\n\n")
+}
+
+
+
+dependent_vars <- c("MSDpersona_GPT3.5.mean", "MSDshape_GPT3.5.mean", 
+                    "MSDpersona_GPT4.mean", "MSDshape_GPT4.mean", 
+                    "MSDpersona_LLaMA3.mean", "MSDshape_LLaMA3.mean")
+
+for (var in dependent_vars) {
+  formula <- as.formula(paste(var, "~ Mean_SocialD"))
+  model <- lm(formula, data = data_social_desirability)
+  cat("Regression for", var, ":\n")
+  print(summary(model))
+  cat("\n\n")
+}
 
 
 

@@ -2267,22 +2267,22 @@ data_shape_LLaMA3 <- filter_data(data_shape_LLaMA3)
 # 
 # table.item <- data.frame(normal_human.mean = item.results.normal_human[,c("mean")],
 #                          old_people.mean = item.results.old_people[,c("mean")],
-#                          
+# 
 #                          persona_GPT3.5.mean = item.results.persona_GPT3.5[,c("mean")],
 #                          shape_GPT3.5.mean = item.results.shape_GPT3.5[,c("mean")],
-#                          
+# 
 #                          persona_GPT4.mean = item.results.persona_GPT4[,c("mean")],
 #                          shape_GPT4.mean = item.results.shape_GPT4[,c("mean")],
-#                          
+# 
 #                          persona_LLaMA3.mean = item.results.persona_LLaMA3[,c("mean")],
 #                          shape_LLaMA3.mean = item.results.shape_LLaMA3[,c("mean")],
-#                          
+# 
 #                          normal_human.sd = item.results.normal_human[,c("sd")],
 #                          old_people.sd = item.results.old_people[,c("sd")],
-#                          
+# 
 #                          persona_GPT3.5.sd = item.results.persona_GPT3.5[,c("sd")],
 #                          shape_GPT3.5.sd = item.results.shape_GPT3.5[,c("sd")],
-#                          
+# 
 #                          persona_GPT4.sd = item.results.persona_GPT4[,c("sd")],
 #                          shape_GPT4.sd = item.results.shape_GPT4[,c("sd")],
 #                          persona_LLaMA3.sd = item.results.persona_LLaMA3[,c("sd")],
@@ -2295,22 +2295,6 @@ data_shape_LLaMA3 <- filter_data(data_shape_LLaMA3)
 
 data_social_desirability <- read.table("Data/social_desirability.csv",sep = ",",header = T)
 
-rows_to_multiply <- c(11, 16, 26, 31, 36, 51, 12, 17, 22, 37, 42, 47, 3, 8, 23, 28, 48, 58, 4, 9, 24, 29, 44, 49, 5, 25, 30, 45, 50, 55)
-
-columns_to_multiply <- c("MSDpersona_GPT3.5.mean", "MSDshape_GPT3.5.mean", 
-                         "MSDpersona_GPT4.mean", "MSDshape_GPT4.mean", 
-                         "MSDpersona_LLaMA3.mean", "MSDshape_LLaMA3.mean")
-
-data_social_desirability[rows_to_multiply, columns_to_multiply] <- -data_social_desirability[rows_to_multiply, columns_to_multiply]
-
-columns_to_multiply <- c("normal_human.mean", "persona_GPT3.5.mean", "shape_GPT3.5.mean", 
-                         "persona_GPT4.mean", "shape_GPT4.mean", 
-                         "persona_LLaMA3.mean", "shape_LLaMA3.mean")
-
-data_social_desirability[rows_to_multiply, columns_to_multiply] <- 6 - data_social_desirability[rows_to_multiply, columns_to_multiply]
-
-
-#write.table(data_social_desirability,"table_social_desirability.csv",sep = ",")
 
 correlation_matrix <- cor(data_social_desirability[c("Mean_SocialD", 
                                                      "MSDpersona_GPT3.5.mean", "MSDshape_GPT3.5.mean", 
@@ -2344,7 +2328,17 @@ for (var in dependent_vars) {
 
 
 
+dependent_vars <- c("MSDpersona_GPT3.5.mean", "MSDshape_GPT3.5.mean", 
+                    "MSDpersona_GPT4.mean", "MSDshape_GPT4.mean", 
+                    "MSDpersona_LLaMA3.mean", "MSDshape_LLaMA3.mean")
 
+for (var in dependent_vars) {
+  formula <- as.formula(paste(var, "~ Mean_SocialD"))
+  model <- lm(formula, data = data_social_desirability)
+  cat("Regression for", var, ":\n")
+  print(summary(model))
+  cat("\n\n")
+}
 
 
 
