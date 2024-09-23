@@ -1,13 +1,10 @@
 # Persona Simulation
-This repository contains codes that generate prompts instructing LLMs to adopt different personalities/personas to respond to psychological tests such as BFI-2, IPIP-300, and HEXACO tests,
+This folder contains codes that generate prompts instructing LLMs to simulate different personalities/personas to respond to psychological tests such as BFI-2, IPIP-300, and HEXACO tests,
 as well as complete real-world simulation tasks.
 
 ## Installation
 
-1. Clone this repository:
-```
-https://github.com/AnnaZou1103/personality_shape
-```
+1. Clone this repository
 
 2. Install the required packages:
 ```
