@@ -2268,6 +2268,63 @@ tcc_normal_shape_GPT4
 tcc_normal_persona_LLaMA3
 tcc_normal_shape_LLaMA3
 
+
+
+loadings_honest_hon[loadings_honest_hon == 0] <- NA
+loadings_persona_GPT3.5_hon[loadings_persona_GPT3.5_hon == 0] <- NA
+loadings_shape_GPT3.5_hon[loadings_shape_GPT3.5_hon == 0] <- NA
+loadings_persona_GPT4_hon[loadings_persona_GPT4_hon == 0] <- NA
+loadings_shape_GPT4_hon[loadings_shape_GPT4_hon == 0] <- NA
+loadings_persona_LLaMA3_hon[loadings_persona_LLaMA3_hon == 0] <- NA
+loadings_shape_LLaMA3_hon[loadings_shape_LLaMA3_hon == 0] <- NA
+
+loadings_honest_hon <- as.data.frame(loadings_honest_hon)
+loadings_persona_GPT3.5_hon <- as.data.frame(loadings_persona_GPT3.5_hon)
+loadings_shape_GPT3.5_hon <- as.data.frame(loadings_shape_GPT3.5_hon)
+loadings_persona_GPT4_hon <- as.data.frame(loadings_persona_GPT4_hon)
+loadings_shape_GPT4_hon <- as.data.frame(loadings_shape_GPT4_hon)
+loadings_persona_LLaMA3_hon <- as.data.frame(loadings_persona_LLaMA3_hon)
+loadings_shape_LLaMA3_hon <- as.data.frame(loadings_shape_LLaMA3_hon)
+
+mae <- function(x, y) {
+  mean(abs(x - y), na.rm = TRUE)
+}
+
+dimensions <- c("Sincerity", "Fairness", "Greed_avoidance", "Modesty")
+
+calculate_mae <- function(human_loadings, model_loadings, dimensions) {
+  mae_values <- sapply(1:length(dimensions), function(i) {
+    mae(human_loadings[[i]], model_loadings[[i]])
+  })
+  names(mae_values) <- dimensions
+  return(mae_values)
+}
+
+# Calculate MAE for each model compared to the human baseline
+mae_persona_GPT3.5 <- calculate_mae(loadings_honest_hon, loadings_persona_GPT3.5_hon, dimensions)
+mae_shape_GPT3.5 <- calculate_mae(loadings_honest_hon, loadings_shape_GPT3.5_hon, dimensions)
+mae_persona_GPT4 <- calculate_mae(loadings_honest_hon, loadings_persona_GPT4_hon, dimensions)
+mae_shape_GPT4 <- calculate_mae(loadings_honest_hon, loadings_shape_GPT4_hon, dimensions)
+mae_persona_LLaMA3 <- calculate_mae(loadings_honest_hon, loadings_persona_LLaMA3_hon, dimensions)
+mae_shape_LLaMA3 <- calculate_mae(loadings_honest_hon, loadings_shape_LLaMA3_hon, dimensions)
+
+# Display MAE results
+mae_persona_GPT3.5
+mae_shape_GPT3.5
+mae_persona_GPT4
+mae_shape_GPT4
+mae_persona_LLaMA3
+mae_shape_LLaMA3
+
+
+
+
+
+
+
+
+
+
 # emo
 loadings_honest_emo <- lavInspect(fit.honest.emo, "std")$lambda
 loadings_persona_GPT3.5_emo <- lavInspect(fit.persona_GPT3.5.emo, "std")$lambda
@@ -2291,6 +2348,59 @@ tcc_normal_shape_GPT4
 tcc_normal_persona_LLaMA3
 tcc_normal_shape_LLaMA3
 
+
+
+
+loadings_honest_emo[loadings_honest_emo == 0] <- NA
+loadings_persona_GPT3.5_emo[loadings_persona_GPT3.5_emo == 0] <- NA
+loadings_shape_GPT3.5_emo[loadings_shape_GPT3.5_emo == 0] <- NA
+loadings_persona_GPT4_emo[loadings_persona_GPT4_emo == 0] <- NA
+loadings_shape_GPT4_emo[loadings_shape_GPT4_emo == 0] <- NA
+loadings_persona_LLaMA3_emo[loadings_persona_LLaMA3_emo == 0] <- NA
+loadings_shape_LLaMA3_emo[loadings_shape_LLaMA3_emo == 0] <- NA
+
+loadings_honest_emo <- as.data.frame(loadings_honest_emo)
+loadings_persona_GPT3.5_emo <- as.data.frame(loadings_persona_GPT3.5_emo)
+loadings_shape_GPT3.5_emo <- as.data.frame(loadings_shape_GPT3.5_emo)
+loadings_persona_GPT4_emo <- as.data.frame(loadings_persona_GPT4_emo)
+loadings_shape_GPT4_emo <- as.data.frame(loadings_shape_GPT4_emo)
+loadings_persona_LLaMA3_emo <- as.data.frame(loadings_persona_LLaMA3_emo)
+loadings_shape_LLaMA3_emo <- as.data.frame(loadings_shape_LLaMA3_emo)
+
+mae <- function(x, y) {
+  mean(abs(x - y), na.rm = TRUE)
+}
+
+dimensions <- c("Fearfulness", "Anxiety", "Dependence", "Sentimentality")
+
+calculate_mae <- function(human_loadings, model_loadings, dimensions) {
+  mae_values <- sapply(1:length(dimensions), function(i) {
+    mae(human_loadings[[i]], model_loadings[[i]])
+  })
+  names(mae_values) <- dimensions
+  return(mae_values)
+}
+
+# Calculate MAE for each model compared to the human baseline
+mae_persona_GPT3.5 <- calculate_mae(loadings_honest_emo, loadings_persona_GPT3.5_emo, dimensions)
+mae_shape_GPT3.5 <- calculate_mae(loadings_honest_emo, loadings_shape_GPT3.5_emo, dimensions)
+mae_persona_GPT4 <- calculate_mae(loadings_honest_emo, loadings_persona_GPT4_emo, dimensions)
+mae_shape_GPT4 <- calculate_mae(loadings_honest_emo, loadings_shape_GPT4_emo, dimensions)
+mae_persona_LLaMA3 <- calculate_mae(loadings_honest_emo, loadings_persona_LLaMA3_emo, dimensions)
+mae_shape_LLaMA3 <- calculate_mae(loadings_honest_emo, loadings_shape_LLaMA3_emo, dimensions)
+
+# Display MAE results
+mae_persona_GPT3.5
+mae_shape_GPT3.5
+mae_persona_GPT4
+mae_shape_GPT4
+mae_persona_LLaMA3
+mae_shape_LLaMA3
+
+
+
+
+
 # ext
 loadings_honest_ext <- lavInspect(fit.honest.ext, "std")$lambda
 loadings_persona_GPT3.5_ext <- lavInspect(fit.persona_GPT3.5.ext, "std")$lambda
@@ -2313,6 +2423,56 @@ tcc_normal_persona_GPT4
 tcc_normal_shape_GPT4
 tcc_normal_persona_LLaMA3
 tcc_normal_shape_LLaMA3
+
+
+
+loadings_honest_ext[loadings_honest_ext == 0] <- NA
+loadings_persona_GPT3.5_ext[loadings_persona_GPT3.5_ext == 0] <- NA
+loadings_shape_GPT3.5_ext[loadings_shape_GPT3.5_ext == 0] <- NA
+loadings_persona_GPT4_ext[loadings_persona_GPT4_ext == 0] <- NA
+loadings_shape_GPT4_ext[loadings_shape_GPT4_ext == 0] <- NA
+loadings_persona_LLaMA3_ext[loadings_persona_LLaMA3_ext == 0] <- NA
+loadings_shape_LLaMA3_ext[loadings_shape_LLaMA3_ext == 0] <- NA
+
+loadings_honest_ext <- as.data.frame(loadings_honest_ext)
+loadings_persona_GPT3.5_ext <- as.data.frame(loadings_persona_GPT3.5_ext)
+loadings_shape_GPT3.5_ext <- as.data.frame(loadings_shape_GPT3.5_ext)
+loadings_persona_GPT4_ext <- as.data.frame(loadings_persona_GPT4_ext)
+loadings_shape_GPT4_ext <- as.data.frame(loadings_shape_GPT4_ext)
+loadings_persona_LLaMA3_ext <- as.data.frame(loadings_persona_LLaMA3_ext)
+loadings_shape_LLaMA3_ext <- as.data.frame(loadings_shape_LLaMA3_ext)
+
+mae <- function(x, y) {
+  mean(abs(x - y), na.rm = TRUE)
+}
+
+dimensions <- c("Social_Self_Esteem", "Social_Boldness", "Sociability", "Liveliness")
+
+calculate_mae <- function(human_loadings, model_loadings, dimensions) {
+  mae_values <- sapply(1:length(dimensions), function(i) {
+    mae(human_loadings[[i]], model_loadings[[i]])
+  })
+  names(mae_values) <- dimensions
+  return(mae_values)
+}
+
+# Calculate MAE for each model compared to the human baseline
+mae_persona_GPT3.5 <- calculate_mae(loadings_honest_ext, loadings_persona_GPT3.5_ext, dimensions)
+mae_shape_GPT3.5 <- calculate_mae(loadings_honest_ext, loadings_shape_GPT3.5_ext, dimensions)
+mae_persona_GPT4 <- calculate_mae(loadings_honest_ext, loadings_persona_GPT4_ext, dimensions)
+mae_shape_GPT4 <- calculate_mae(loadings_honest_ext, loadings_shape_GPT4_ext, dimensions)
+mae_persona_LLaMA3 <- calculate_mae(loadings_honest_ext, loadings_persona_LLaMA3_ext, dimensions)
+mae_shape_LLaMA3 <- calculate_mae(loadings_honest_ext, loadings_shape_LLaMA3_ext, dimensions)
+
+# Display MAE results
+mae_persona_GPT3.5
+mae_shape_GPT3.5
+mae_persona_GPT4
+mae_shape_GPT4
+mae_persona_LLaMA3
+mae_shape_LLaMA3
+
+
 
 
 # agr
@@ -2339,6 +2499,56 @@ tcc_normal_persona_LLaMA3
 tcc_normal_shape_LLaMA3
 
 
+
+loadings_honest_agr[loadings_honest_agr == 0] <- NA
+loadings_persona_GPT3.5_agr[loadings_persona_GPT3.5_agr == 0] <- NA
+loadings_shape_GPT3.5_agr[loadings_shape_GPT3.5_agr == 0] <- NA
+loadings_persona_GPT4_agr[loadings_persona_GPT4_agr == 0] <- NA
+loadings_shape_GPT4_agr[loadings_shape_GPT4_agr == 0] <- NA
+loadings_persona_LLaMA3_agr[loadings_persona_LLaMA3_agr == 0] <- NA
+loadings_shape_LLaMA3_agr[loadings_shape_LLaMA3_agr == 0] <- NA
+
+loadings_honest_agr <- as.data.frame(loadings_honest_agr)
+loadings_persona_GPT3.5_agr <- as.data.frame(loadings_persona_GPT3.5_agr)
+loadings_shape_GPT3.5_agr <- as.data.frame(loadings_shape_GPT3.5_agr)
+loadings_persona_GPT4_agr <- as.data.frame(loadings_persona_GPT4_agr)
+loadings_shape_GPT4_agr <- as.data.frame(loadings_shape_GPT4_agr)
+loadings_persona_LLaMA3_agr <- as.data.frame(loadings_persona_LLaMA3_agr)
+loadings_shape_LLaMA3_agr <- as.data.frame(loadings_shape_LLaMA3_agr)
+
+mae <- function(x, y) {
+  mean(abs(x - y), na.rm = TRUE)
+}
+
+dimensions <- c("Forgiveness", "Gentleness", "Flexibility", "Patience")
+
+calculate_mae <- function(human_loadings, model_loadings, dimensions) {
+  mae_values <- sapply(1:length(dimensions), function(i) {
+    mae(human_loadings[[i]], model_loadings[[i]])
+  })
+  names(mae_values) <- dimensions
+  return(mae_values)
+}
+
+# Calculate MAE for each model compared to the human baseline
+mae_persona_GPT3.5 <- calculate_mae(loadings_honest_agr, loadings_persona_GPT3.5_agr, dimensions)
+mae_shape_GPT3.5 <- calculate_mae(loadings_honest_agr, loadings_shape_GPT3.5_agr, dimensions)
+mae_persona_GPT4 <- calculate_mae(loadings_honest_agr, loadings_persona_GPT4_agr, dimensions)
+mae_shape_GPT4 <- calculate_mae(loadings_honest_agr, loadings_shape_GPT4_agr, dimensions)
+mae_persona_LLaMA3 <- calculate_mae(loadings_honest_agr, loadings_persona_LLaMA3_agr, dimensions)
+mae_shape_LLaMA3 <- calculate_mae(loadings_honest_agr, loadings_shape_LLaMA3_agr, dimensions)
+
+# Display MAE results
+mae_persona_GPT3.5
+mae_shape_GPT3.5
+mae_persona_GPT4
+mae_shape_GPT4
+mae_persona_LLaMA3
+mae_shape_LLaMA3
+
+
+
+
 # con
 loadings_honest_con <- lavInspect(fit.honest.con, "std")$lambda
 loadings_persona_GPT3.5_con <- lavInspect(fit.persona_GPT3.5.con, "std")$lambda
@@ -2363,6 +2573,55 @@ tcc_normal_persona_LLaMA3
 tcc_normal_shape_LLaMA3
 
 
+
+loadings_honest_con[loadings_honest_con == 0] <- NA
+loadings_persona_GPT3.5_con[loadings_persona_GPT3.5_con == 0] <- NA
+loadings_shape_GPT3.5_con[loadings_shape_GPT3.5_con == 0] <- NA
+loadings_persona_GPT4_con[loadings_persona_GPT4_con == 0] <- NA
+loadings_shape_GPT4_con[loadings_shape_GPT4_con == 0] <- NA
+loadings_persona_LLaMA3_con[loadings_persona_LLaMA3_con == 0] <- NA
+loadings_shape_LLaMA3_con[loadings_shape_LLaMA3_con == 0] <- NA
+
+loadings_honest_con <- as.data.frame(loadings_honest_con)
+loadings_persona_GPT3.5_con <- as.data.frame(loadings_persona_GPT3.5_con)
+loadings_shape_GPT3.5_con <- as.data.frame(loadings_shape_GPT3.5_con)
+loadings_persona_GPT4_con <- as.data.frame(loadings_persona_GPT4_con)
+loadings_shape_GPT4_con <- as.data.frame(loadings_shape_GPT4_con)
+loadings_persona_LLaMA3_con <- as.data.frame(loadings_persona_LLaMA3_con)
+loadings_shape_LLaMA3_con <- as.data.frame(loadings_shape_LLaMA3_con)
+
+mae <- function(x, y) {
+  mean(abs(x - y), na.rm = TRUE)
+}
+
+dimensions <- c("Organization", "Diligence", "Perfectionism", "Prudence")
+
+calculate_mae <- function(human_loadings, model_loadings, dimensions) {
+  mae_values <- sapply(1:length(dimensions), function(i) {
+    mae(human_loadings[[i]], model_loadings[[i]])
+  })
+  names(mae_values) <- dimensions
+  return(mae_values)
+}
+
+# Calculate MAE for each model compared to the human baseline
+mae_persona_GPT3.5 <- calculate_mae(loadings_honest_con, loadings_persona_GPT3.5_con, dimensions)
+mae_shape_GPT3.5 <- calculate_mae(loadings_honest_con, loadings_shape_GPT3.5_con, dimensions)
+mae_persona_GPT4 <- calculate_mae(loadings_honest_con, loadings_persona_GPT4_con, dimensions)
+mae_shape_GPT4 <- calculate_mae(loadings_honest_con, loadings_shape_GPT4_con, dimensions)
+mae_persona_LLaMA3 <- calculate_mae(loadings_honest_con, loadings_persona_LLaMA3_con, dimensions)
+mae_shape_LLaMA3 <- calculate_mae(loadings_honest_con, loadings_shape_LLaMA3_con, dimensions)
+
+# Display MAE results
+mae_persona_GPT3.5
+mae_shape_GPT3.5
+mae_persona_GPT4
+mae_shape_GPT4
+mae_persona_LLaMA3
+mae_shape_LLaMA3
+
+
+
 # ope
 loadings_honest_ope <- lavInspect(fit.honest.ope, "std")$lambda
 loadings_persona_GPT3.5_ope <- lavInspect(fit.persona_GPT3.5.ope, "std")$lambda
@@ -2385,6 +2644,55 @@ tcc_normal_persona_GPT4
 tcc_normal_shape_GPT4
 tcc_normal_persona_LLaMA3
 tcc_normal_shape_LLaMA3
+
+
+
+loadings_honest_ope[loadings_honest_ope == 0] <- NA
+loadings_persona_GPT3.5_ope[loadings_persona_GPT3.5_ope == 0] <- NA
+loadings_shape_GPT3.5_ope[loadings_shape_GPT3.5_ope == 0] <- NA
+loadings_persona_GPT4_ope[loadings_persona_GPT4_ope == 0] <- NA
+loadings_shape_GPT4_ope[loadings_shape_GPT4_ope == 0] <- NA
+loadings_persona_LLaMA3_ope[loadings_persona_LLaMA3_ope == 0] <- NA
+loadings_shape_LLaMA3_ope[loadings_shape_LLaMA3_ope == 0] <- NA
+
+loadings_honest_ope <- as.data.frame(loadings_honest_ope)
+loadings_persona_GPT3.5_ope <- as.data.frame(loadings_persona_GPT3.5_ope)
+loadings_shape_GPT3.5_ope <- as.data.frame(loadings_shape_GPT3.5_ope)
+loadings_persona_GPT4_ope <- as.data.frame(loadings_persona_GPT4_ope)
+loadings_shape_GPT4_ope <- as.data.frame(loadings_shape_GPT4_ope)
+loadings_persona_LLaMA3_ope <- as.data.frame(loadings_persona_LLaMA3_ope)
+loadings_shape_LLaMA3_ope <- as.data.frame(loadings_shape_LLaMA3_ope)
+
+mae <- function(x, y) {
+  mean(abs(x - y), na.rm = TRUE)
+}
+
+dimensions <- c("Aesthetic_Appreciation", "Inquisitiveness", "Creativity", "Unconventionality")
+
+calculate_mae <- function(human_loadings, model_loadings, dimensions) {
+  mae_values <- sapply(1:length(dimensions), function(i) {
+    mae(human_loadings[[i]], model_loadings[[i]])
+  })
+  names(mae_values) <- dimensions
+  return(mae_values)
+}
+
+# Calculate MAE for each model compared to the human baseline
+mae_persona_GPT3.5 <- calculate_mae(loadings_honest_ope, loadings_persona_GPT3.5_ope, dimensions)
+mae_shape_GPT3.5 <- calculate_mae(loadings_honest_ope, loadings_shape_GPT3.5_ope, dimensions)
+mae_persona_GPT4 <- calculate_mae(loadings_honest_ope, loadings_persona_GPT4_ope, dimensions)
+mae_shape_GPT4 <- calculate_mae(loadings_honest_ope, loadings_shape_GPT4_ope, dimensions)
+mae_persona_LLaMA3 <- calculate_mae(loadings_honest_ope, loadings_persona_LLaMA3_ope, dimensions)
+mae_shape_LLaMA3 <- calculate_mae(loadings_honest_ope, loadings_shape_LLaMA3_ope, dimensions)
+
+# Display MAE results
+mae_persona_GPT3.5
+mae_shape_GPT3.5
+mae_persona_GPT4
+mae_shape_GPT4
+mae_persona_LLaMA3
+mae_shape_LLaMA3
+
 
 
 
@@ -2658,6 +2966,58 @@ tcc_normal_shape_GPT3.5
 tcc_normal_shape_GPT4
 tcc_normal_persona_LLaMA3
 tcc_normal_shape_LLaMA3
+
+
+
+loadings_normal_human[loadings_normal_human == 0] <- NA
+loadings_persona_GPT3.5[loadings_persona_GPT3.5 == 0] <- NA
+loadings_shape_GPT3.5[loadings_shape_GPT3.5 == 0] <- NA
+#loadings_persona_GPT4[loadings_persona_GPT4 == 0] <- NA
+loadings_shape_GPT4[loadings_shape_GPT4 == 0] <- NA
+loadings_persona_LLaMA3[loadings_persona_LLaMA3 == 0] <- NA
+loadings_shape_LLaMA3[loadings_shape_LLaMA3 == 0] <- NA
+
+loadings_normal_human <- as.data.frame(loadings_normal_human)
+loadings_persona_GPT3.5 <- as.data.frame(loadings_persona_GPT3.5)
+loadings_shape_GPT3.5 <- as.data.frame(loadings_shape_GPT3.5)
+#loadings_persona_GPT4 <- as.data.frame(loadings_persona_GPT4)
+loadings_shape_GPT4 <- as.data.frame(loadings_shape_GPT4)
+loadings_persona_LLaMA3 <- as.data.frame(loadings_persona_LLaMA3)
+loadings_shape_LLaMA3 <- as.data.frame(loadings_shape_LLaMA3)
+
+mae <- function(x, y) {
+  mean(abs(x - y), na.rm = TRUE)
+}
+
+dimensions <- c("Honesty_humility", "Emotionality", "Extraversion", "Agreeableness", "Conscientiousness", "Openness_to_experience")
+
+calculate_mae <- function(human_loadings, model_loadings, dimensions) {
+  mae_values <- sapply(1:length(dimensions), function(i) {
+    mae(human_loadings[[i]], model_loadings[[i]])
+  })
+  names(mae_values) <- dimensions
+  return(mae_values)
+}
+
+# Calculate MAE for each model compared to the human baseline
+mae_persona_GPT3.5 <- calculate_mae(loadings_normal_human, loadings_persona_GPT3.5, dimensions)
+mae_shape_GPT3.5 <- calculate_mae(loadings_normal_human, loadings_shape_GPT3.5, dimensions)
+#mae_persona_GPT4 <- calculate_mae(loadings_normal_human, loadings_persona_GPT4, dimensions)
+mae_shape_GPT4 <- calculate_mae(loadings_normal_human, loadings_shape_GPT4, dimensions)
+mae_persona_LLaMA3 <- calculate_mae(loadings_normal_human, loadings_persona_LLaMA3, dimensions)
+mae_shape_LLaMA3 <- calculate_mae(loadings_normal_human, loadings_shape_LLaMA3, dimensions)
+
+# Display MAE results
+mae_persona_GPT3.5
+mae_shape_GPT3.5
+#mae_persona_GPT4
+mae_shape_GPT4
+mae_persona_LLaMA3
+mae_shape_LLaMA3
+
+
+
+
 
 
 
